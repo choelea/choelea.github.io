@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Kibana 5.x 加强安全 - x-pack篇 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
+    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/">
+    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/about/">
+    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
+											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/about/">
+											<i class="fas fa-user fa-fw"></i>&nbsp;关于
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Elastic-Technologies/Elasticsearch-Kibana-Security-xpack" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">Kibana 5.x 加强安全 - x-pack篇</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-11
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p> 此文之前，假定读者已经一次完成了Kibana和elasticsearch的安装。参考官方文档，安装后默认配置已经可以连通kibana和es。 </p>
+<ul>
+<li>系统： centos7</li>
+<li><p>内容： 增加authentication &amp; enable ssl</p>
+<p>elastic 技术栈 的另外一个重要的角色是x-pack. </p>
+</li>
+</ul>
+<p><img src="http://tech.jiu-shu.com/Elastic-Technologies/elastic-charm.png" alt="elastic-charm"></p>
+<h3 id="ES安装xpack插件"><a href="#ES安装xpack插件" class="headerlink" title="ES安装xpack插件"></a>ES安装xpack插件</h3><p>参考<a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html" target="_blank" rel="noopener">安装xpack</a><br>Run bin/elasticsearch-plugin install from ES_HOME on each node in your cluster:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/elasticsearch-plugin install x-pack</span><br></pre></td></tr></table></figure></p>
+<h3 id="Kibana-安装xpack-插件"><a href="#Kibana-安装xpack-插件" class="headerlink" title="Kibana 安装xpack 插件"></a>Kibana 安装xpack 插件</h3><p>参考<a href="https://www.elastic.co/guide/en/x-pack/current/installing-xpack.html" target="_blank" rel="noopener">安装xpack</a></p>
+<p>Install X-Pack into Kibana by running bin/kibana-plugin in your Kibana installation directory.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kibana-plugin install x-pack</span><br></pre></td></tr></table></figure></p>
+<h3 id="依次启动elasticsearch-和kibana"><a href="#依次启动elasticsearch-和kibana" class="headerlink" title="依次启动elasticsearch 和kibana"></a>依次启动elasticsearch 和kibana</h3><h3 id="修改用户elastic-和-kibana的密码"><a href="#修改用户elastic-和-kibana的密码" class="headerlink" title="修改用户elastic 和 kibana的密码"></a>修改用户elastic 和 kibana的密码</h3><p><a href="https://www.elastic.co/guide/en/x-pack/current/security-getting-started.html" target="_blank" rel="noopener">X-Pack 文档：修改密码</a></p>
+<blockquote>
+<p>X-Pack security provides a built-in elastic superuser you can use to start setting things up. The default password for the elastic user is changeme.</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT -u elastic &apos;localhost:9200/_xpack/security/user/elastic/_password&apos; -d &apos;&#123;</span><br><span class="line">  &quot;password&quot; : &quot;elasticpassword&quot;</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -XPUT -u elastic &apos;localhost:9200/_xpack/security/user/kibana/_password&apos; -d &apos;&#123;</span><br><span class="line">  &quot;password&quot; : &quot;kibanapassword&quot;</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CURL授权<br>在访问需要授权的页面时，可通过-u选项提供用户名和密码进行授权。 通常的做法是在命令行只输入用户名，之后会提示输入密码，这样可以保证在查看历史记录时不会将密码泄露</p>
+</blockquote>
+<h3 id="Enable-Kibana-SSL"><a href="#Enable-Kibana-SSL" class="headerlink" title="Enable Kibana SSL"></a>Enable Kibana SSL</h3><p><a href="https://www.elastic.co/guide/en/kibana/current/production.html" target="_blank" rel="noopener">Using Kibana in a Production Environment</a><br>配置上证书的路径即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># SSL for outgoing requests from the Kibana Server (PEM formatted)</span><br><span class="line">server.ssl.key: /path/to/your/server.key</span><br><span class="line">server.ssl.cert: /path/to/your/server.crt</span><br></pre></td></tr></table></figure></p>
+<p>修改了超级用户的密码，enable ssl后，就可以放心的去使用kibana的<strong>Dev Tools</strong> 或者chrome插件（sense）进行大部分API 的操作。 （在此之前需要ssh到服务器通过curl来操作以保证安全）</p>
+<h3 id="创建用户logstash-writer"><a href="#创建用户logstash-writer" class="headerlink" title="创建用户logstash_writer"></a>创建用户logstash_writer</h3><p><a href="https://www.elastic.co/guide/en/x-pack/5.1/logstash.html" target="_blank" rel="noopener">官方参考</a><br>上面步骤完成后会发现logstash推送给es报错了。因为现在ES需要用户名和密码了。 这里我们需要创建一个用户拥有write, delete, and create_index的权限。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[2016-12-23T20:42:19,350][WARN ][logstash.outputs.elasticsearch] Attempted to resurrect connection to dead ES instance, but got an error. &#123;:url=&gt;#&lt;URI::HTTP:0x17b5a1bd URL:http://localhost:9200&gt;, :error_type=&gt;LogStash::Outputs::ElasticSearch::HttpClient::Pool::BadResponseCodeError, :error=&gt;&quot;Got response code &apos;401&apos; contact Elasticsearch at URL &apos;http://localhost:9200/&apos;&quot;&#125;</span><br><span class="line">[2016-12-23T20:42:20,132][WARN ][logstash.shutdownwatcher ] &#123;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>先创建一个role：logstash_writer</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">POST _xpack/security/role/logstash_writer</span><br><span class="line">&#123;</span><br><span class="line">  &quot;cluster&quot;: [&quot;manage_index_templates&quot;, &quot;monitor&quot;],</span><br><span class="line">  &quot;indices&quot;: [</span><br><span class="line">    &#123;</span><br><span class="line">      &quot;names&quot;: [ &quot;logstash-*&quot;,&quot;business-index-*&quot;], </span><br><span class="line">      &quot;privileges&quot;: [&quot;write&quot;,&quot;delete&quot;,&quot;create_index&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>再创建一个用户：logstash_internal拥有Role：logstash_writer</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST /_xpack/security/user/logstash_internal</span><br><span class="line">&#123;</span><br><span class="line">  &quot;password&quot; : &quot;changeme&quot;,</span><br><span class="line">  &quot;roles&quot; : [ &quot;logstash_writer&quot;],</span><br><span class="line">  &quot;full_name&quot; : &quot;Internal Logstash User&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>上面的操作也可以通过Kibana的Management UI来操作</p>
+</blockquote>
+<ul>
+<li>配置logstash.conf</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">  elasticsearch &#123;</span><br><span class="line">    ...</span><br><span class="line">    user =&gt; logstash_internal</span><br><span class="line">    password =&gt; changeme</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>logstash, elasticsearch, kibana 如果在同一网络，而暴露出去的只有kibana的话，logstash和elasticsearch 之前是无需授权的。可以参考<a href="https://www.elastic.co/guide/en/x-pack/current/anonymous-access.html" target="_blank" rel="noopener">Enabling Anonymous Access</a> 另外，logstash和elasticsearch之间如果需要授权，会不会有性能的影响？</p>
+</blockquote>
+<h3 id="给Kibana用户加上index的读的权限"><a href="#给Kibana用户加上index的读的权限" class="headerlink" title="给Kibana用户加上index的读的权限"></a>给Kibana用户加上index的读的权限</h3><p>Kibana安装xpack后默认就需要登录了。也可以用超级用户elastic登录<br>登录后打开DevTools进行ES API的操作。</p>
+<p>修改后停掉kibana服务。修改kibana的配置：</p>
+<blockquote>
+<p>Once you change the password, you need to specify it with the elasticsearch.password property in kibana.yml:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elasticsearch.password: &quot;s0m3th1ngs3cr3t&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="坑-（Tricky-Part）"><a href="#坑-（Tricky-Part）" class="headerlink" title="坑 （Tricky Part）"></a>坑 （Tricky Part）</h3><ol>
+<li>/etc/logstash/conf.d 下不要有多余的文件。比如logstash.conf.bak， 似乎logstash会读这个文件夹下的不止logstash.conf这个文件配置。logstash.conf.bak 会导致死循环一样的重启。<a href="https://discuss.elastic.co/t/logstash-endless-loop-with-starting-and-stopping/69913" target="_blank" rel="noopener">elastic community</a></li>
+</ol>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-11
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Elastic-Technologies/Elasticsearch-Mapping/" rel="prev" title="Elasticsearch 自定义Mapping">
+                                  
+                                      Elasticsearch 自定义Mapping
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Elastic-Technologies/Elasticsearch-6_2-Restful-API/" rel="prev" title="Elastcisearch 6.2 Restful API">
+                                    
+                                        Elastcisearch 6.2 Restful API
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Logstash-Kibana-Log-Collecting/">使用ELK来做日志归总</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/">Elasticsearch 自定义Mapping</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-6_2-Restful-API/">Elastcisearch 6.2 Restful API</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-2_4-Restful-Api/">Elastcisearch 2.4 Restful API</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: 'Kibana 5.x 加强安全 - x-pack篇',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES安装xpack插件"><span class="toc-text">ES安装xpack插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kibana-安装xpack-插件"><span class="toc-text">Kibana 安装xpack 插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#依次启动elasticsearch-和kibana"><span class="toc-text">依次启动elasticsearch 和kibana</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改用户elastic-和-kibana的密码"><span class="toc-text">修改用户elastic 和 kibana的密码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Enable-Kibana-SSL"><span class="toc-text">Enable Kibana SSL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建用户logstash-writer"><span class="toc-text">创建用户logstash_writer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#给Kibana用户加上index的读的权限"><span class="toc-text">给Kibana用户加上index的读的权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坑-（Tricky-Part）"><span class="toc-text">坑 （Tricky Part）</span></a></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
+                    <div class="name">
+                        
+                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
+                        
+                        &nbsp;&nbsp;xaoxuu&#39;s blog
+                    </div>
+                </a></li>
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

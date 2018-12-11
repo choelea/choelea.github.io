@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>使用ELK来做日志归总 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
+    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/">
+    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/about/">
+    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
+											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/about/">
+											<i class="fas fa-user fa-fw"></i>&nbsp;关于
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Elastic-Technologies/Elasticsearch-Logstash-Kibana-Log-Collecting" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">使用ELK来做日志归总</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-11
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="ELK-初探"><a href="#ELK-初探" class="headerlink" title="ELK 初探"></a>ELK 初探</h1><p>ELK实时日志分析平台 初次尝试。 ELK 的多种架构请参考文章: <a href="https://blog.csdn.net/lively1982/article/details/50678657" target="_blank" rel="noopener">漫谈ELK在大数据运维中的应用</a></p>
+<h2 id="平台"><a href="#平台" class="headerlink" title="平台"></a>平台</h2><ul>
+<li>CentOS 7 </li>
+<li>Oracle JDK 8</li>
+<li>Kibana 4.5.2</li>
+<li>Elaticsearch 2.3.4</li>
+<li>logstash 2.3.4</li>
+<li>filebeat 1.2.3<br>查看version command： <code>filebeat --version</code><h2 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h2><img src="http://tech.jiu-shu.com/Elastic-Technologies/elk.png" alt="elk"><h2 id="软件的安装"><a href="#软件的安装" class="headerlink" title="软件的安装"></a>软件的安装</h2>采用yum的安装模式。首先需要添加对应的repo文件。 对应的详细的安装方法可以参考在线文档， 这里以logstash为例。<h3 id="logstash-安装"><a href="#logstash-安装" class="headerlink" title="logstash 安装"></a>logstash 安装</h3></li>
+</ul>
+<ul>
+<li><strong>Download and install the public signing key</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>添加Repo到目录/etc/yum.repos.d/， 比如：logstash.repo</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[logstash-2.3]</span><br><span class="line">name=Logstash repository for 2.3.x packages</span><br><span class="line">baseurl=https://packages.elastic.co/logstash/2.3/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>安装</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install logstash</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>随系统自动启动</strong><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chkconfig --add filebeat</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="其他软件的repositories"><a href="#其他软件的repositories" class="headerlink" title="其他软件的repositories"></a>其他软件的repositories</h3><p><strong>filebeat</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[beats]</span><br><span class="line">name=Elastic Beats Repository</span><br><span class="line">baseurl=https://packages.elastic.co/beats/yum/el/$basearch</span><br><span class="line">enabled=1</span><br><span class="line">gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">gpgcheck=1</span><br></pre></td></tr></table></figure>
+<p><strong>elasticsearch <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-repositories.html" target="_blank" rel="noopener">官方介绍</a></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[elasticsearch-2.x]</span><br><span class="line">name=Elasticsearch repository for 2.x packages</span><br><span class="line">baseurl=https://packages.elastic.co/elasticsearch/2.x/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=https://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+<p><strong>kibana <a href="https://www.elastic.co/guide/en/kibana/current/setup.html" target="_blank" rel="noopener">在线文档</a></strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[kibana-4.5]</span><br><span class="line">name=Kibana repository for 4.5.x packages</span><br><span class="line">baseurl=http://packages.elastic.co/kibana/4.5/centos</span><br><span class="line">gpgcheck=1</span><br><span class="line">gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch</span><br><span class="line">enabled=1</span><br></pre></td></tr></table></figure>
+<p><strong>查看服务状态</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">servie logstash status</span><br></pre></td></tr></table></figure>
+<p><strong>查看服务文件路径</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ql logstash</span><br></pre></td></tr></table></figure>
+<h2 id="FileBeat-使用"><a href="#FileBeat-使用" class="headerlink" title="FileBeat 使用"></a>FileBeat 使用</h2><p>filebeat 安装后的配置文件存放于：/etc/filebeat/下<br>修改配置文件filebeat.yml<br><strong>1， 修改文件的路径：比如：/home/osboxes/app.log</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">filebeat:</span><br><span class="line">  prospectors:</span><br><span class="line">    -</span><br><span class="line">      paths:</span><br><span class="line">        - &quot;/home/osboxes/app.log&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>2， 修改输出， 默认是直接输出到Elasticsearch，我们修改输出到logstash</strong><br>只需要打开对应的注释即可，将elasticsearch相关注释掉， 打开logstash的注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output:</span><br><span class="line">  logstash:</span><br><span class="line">    hosts: [&quot;127.0.0.1:5044&quot;]</span><br><span class="line"></span><br><span class="line">    # Optional load balance the events between the Logstash hosts</span><br><span class="line">    #loadbalance: true</span><br></pre></td></tr></table></figure>
+<p>filebeat.yml 已经配置了多个output选项，我们只需要打开注解。 这里可以做个小的测试。 修改配置后可运行命令验证：<code>filebeat -configtest -e.</code> <strong>filebeat只能配置一个output项，修改配置后需要重启</strong><br>1，找到Console output，打开注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##Console output</span><br><span class="line">   console:</span><br><span class="line">    # Pretty print json event</span><br><span class="line">    pretty: true</span><br></pre></td></tr></table></figure>
+<p>2， 停止filebeat服务 <code>sudo service filebeat stop</code>，手动启动filebeat来方便我们观察console输出<code>sudo filebeat -e -c /etc/filebeat/filebeat.yml</code>。(On windows: <code>filebeat.exe -e -c filebeat.yml</code>)<br>3， 新开窗口输出信息至文件/var/log/app.log<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;2016-06-29 17:14:13.802  INFO 6244 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core &#123;4.3.11.Final&#125;&quot; &gt;&gt; app.log</span><br></pre></td></tr></table></figure></p>
+<p>4，切换至filebeat的启动窗口可以看到如下的输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[osboxes@osboxes logstash]$ sudo filebeat -e -c /etc/filebeat/filebeat.yml</span><br><span class="line">&#123;</span><br><span class="line">  &quot;@timestamp&quot;: &quot;2016-07-11T13:44:43.926Z&quot;,</span><br><span class="line">  &quot;beat&quot;: &#123;</span><br><span class="line">    &quot;hostname&quot;: &quot;osboxes&quot;,</span><br><span class="line">    &quot;name&quot;: &quot;osboxes&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;count&quot;: 1,</span><br><span class="line">  &quot;fields&quot;: null,</span><br><span class="line">  &quot;input_type&quot;: &quot;log&quot;,</span><br><span class="line">  &quot;message&quot;: &quot;2016-06-29 17:14:13.802  INFO 6244 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core &#123;4.3.11.Final&#125;&quot;,</span><br><span class="line">  &quot;offset&quot;: 130,</span><br><span class="line">  &quot;source&quot;: &quot;/home/osboxes/app.log&quot;,</span><br><span class="line">  &quot;type&quot;: &quot;log&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="LogStash-配置"><a href="#LogStash-配置" class="headerlink" title="LogStash 配置"></a>LogStash 配置</h2><p> 上面的小测做完后，将filebeat的配置改回输出到logstash。</p>
+<h3 id="连通filebeat和logstash"><a href="#连通filebeat和logstash" class="headerlink" title="连通filebeat和logstash"></a>连通filebeat和logstash</h3><p> <strong>1， 添加logstash.conf 文件在/etc/logstash/conf.d/logstash.conf</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  beats &#123;</span><br><span class="line">    port =&gt; 5044</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">output &#123;</span><br><span class="line">  stdout&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改后可以通过命令验证配置是否正确：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /opt/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf --configtest</span><br></pre></td></tr></table></figure>
+<p><strong>2, 启动logstash</strong><br>采用命令启动方便从console观察输出。<code>sudo /opt/logstash/bin/logstash -f /etc/logstash/conf.d/logstash.conf</code>如果采用service的启动方式，需要去/var/log/logstash/logstash.stdout 查看log<br><strong>3，启动filebeat 然后向文件app.log 写入log</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;2016-06-29 17:14:13.802  INFO 6244 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core &#123;4.3.11.Final&#125;&quot; &gt;&gt; app.log</span><br></pre></td></tr></table></figure>
+<p><strong>4，切换至logstash窗口， 可以观察到一下输出，证明filebeat已经可以成功输出到logstash</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[osboxes@osboxes bin]$ sudo ./logstash -f /etc/logstash/conf.d/logstash.conf </span><br><span class="line">Settings: Default pipeline workers: 1</span><br><span class="line">Pipeline main started</span><br><span class="line">2016-07-12T05:57:46.877Z osboxes 2016-06-29 17:14:13.802  INFO 6244 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core &#123;4.3.11.Final&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用Grok-Filter-Plugin解析日志-（spring-boot-的默认日志格式）"><a href="#使用Grok-Filter-Plugin解析日志-（spring-boot-的默认日志格式）" class="headerlink" title="使用Grok Filter Plugin解析日志 （spring boot 的默认日志格式）"></a>使用Grok Filter Plugin解析日志 （spring boot 的默认日志格式）</h3><p><strong>1， 修改logstash.conf 添加filter，重启logstash</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">input &#123;</span><br><span class="line">  beats &#123;</span><br><span class="line">    port =&gt; 5044</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">filter &#123;</span><br><span class="line">  #If log line contains tab character followed by &apos;at&apos; then we will tag that entry as stacktrace</span><br><span class="line">  if [message] =~ &quot;\tat&quot; &#123;</span><br><span class="line">    grok &#123;</span><br><span class="line">      match =&gt; [&quot;message&quot;, &quot;^(\tat)&quot;]</span><br><span class="line">      add_tag =&gt; [&quot;stacktrace&quot;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  #Grokking Spring Boot&apos;s default log format</span><br><span class="line">  grok &#123;</span><br><span class="line">    match =&gt; [ &quot;message&quot;,</span><br><span class="line">               &quot;(?&lt;timestamp&gt;%&#123;YEAR&#125;-%&#123;MONTHNUM&#125;-%&#123;MONTHDAY&#125; %&#123;TIME&#125;)  %&#123;LOGLEVEL:level&#125; %&#123;NUMBER:pid&#125; --- \[(?&lt;thread&gt;[A-Za-z0-9-]+)\] (?&lt;class&gt;[A-Za-z0-9.#_]+)\s*:\s+(?&lt;logmessage&gt;.*)&quot;,</span><br><span class="line">               &quot;message&quot;,</span><br><span class="line">               &quot;(?&lt;timestamp&gt;%&#123;YEAR&#125;-%&#123;MONTHNUM&#125;-%&#123;MONTHDAY&#125; %&#123;TIME&#125;)  %&#123;LOGLEVEL:level&#125; %&#123;NUMBER:pid&#125; --- .+? :\s+(?&lt;logmessage&gt;.*)&quot;</span><br><span class="line">             ]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  #Parsing out timestamps which are in timestamp field thanks to previous grok section</span><br><span class="line">  date &#123;</span><br><span class="line">    match =&gt; [ &quot;timestamp&quot; , &quot;yyyy-MM-dd HH:mm:ss.SSS&quot; ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">output &#123;</span><br><span class="line">  stdout&#123;</span><br><span class="line">   codec =&gt; rubydebug</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2，写入log到文件app.log</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;2016-06-29 17:14:09.477  INFO 6244 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named &apos;errorChannel&apos; has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.&quot; &gt;&gt; app.log</span><br></pre></td></tr></table></figure>
+<p><strong>3， 切换logstash查看输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">       &quot;message&quot; =&gt; &quot;2016-06-29 17:14:09.477  INFO 6244 --- [main] faultConfiguringBeanFactoryPostProcessor : No bean named &apos;errorChannel&apos; has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.&quot;,</span><br><span class="line">      &quot;@version&quot; =&gt; &quot;1&quot;,</span><br><span class="line">    &quot;@timestamp&quot; =&gt; &quot;2016-06-29T16:14:09.477Z&quot;,</span><br><span class="line">         &quot;count&quot; =&gt; 1,</span><br><span class="line">        &quot;fields&quot; =&gt; nil,</span><br><span class="line">        &quot;source&quot; =&gt; &quot;/home/osboxes/app.log&quot;,</span><br><span class="line">        &quot;offset&quot; =&gt; 987,</span><br><span class="line">          &quot;type&quot; =&gt; &quot;log&quot;,</span><br><span class="line">    &quot;input_type&quot; =&gt; &quot;log&quot;,</span><br><span class="line">          &quot;beat&quot; =&gt; &#123;</span><br><span class="line">        &quot;hostname&quot; =&gt; &quot;osboxes&quot;,</span><br><span class="line">            &quot;name&quot; =&gt; &quot;osboxes&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">          &quot;host&quot; =&gt; &quot;osboxes&quot;,</span><br><span class="line">          &quot;tags&quot; =&gt; [</span><br><span class="line">        [0] &quot;beats_input_codec_plain_applied&quot;</span><br><span class="line">    ],</span><br><span class="line">     &quot;timestamp&quot; =&gt; &quot;2016-06-29 17:14:09.477&quot;,</span><br><span class="line">         &quot;level&quot; =&gt; &quot;INFO&quot;,</span><br><span class="line">           &quot;pid&quot; =&gt; &quot;6244&quot;,</span><br><span class="line">        &quot;thread&quot; =&gt; &quot;main&quot;,</span><br><span class="line">         &quot;class&quot; =&gt; &quot;faultConfiguringBeanFactoryPostProcessor&quot;,</span><br><span class="line">    &quot;logmessage&quot; =&gt; &quot;No bean named &apos;errorChannel&apos; has been explicitly defined. Therefore, a default PublishSubscribeChannel will be created.&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，完成了初步的日志的解析，日志别解析至对应的fields中。 接下来将这些数据推送至Elasticsearch进行索引。</p>
+<h3 id="修改logstash配置，输出到elasticsearch"><a href="#修改logstash配置，输出到elasticsearch" class="headerlink" title="修改logstash配置，输出到elasticsearch"></a>修改logstash配置，输出到elasticsearch</h3><p>修改配置文件的output。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output &#123;</span><br><span class="line">    elasticsearch &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用这样的结构，Logstash使用http协议连接到Elasticsearch。上面的例子假设Logstash和Elasticsearch运行在同一个机器上。您可以使用主机配置<code>hosts =&gt; &quot;es-machine:9092</code>指定远程Elasticsearch实例。</p>
+<h3 id="查看结果"><a href="#查看结果" class="headerlink" title="查看结果"></a>查看结果</h3><p>一次启动elasticsearch，kibana，logstash，filebeat。 （filebeat已启动的话，无需重启）</p>
+<h3 id="安装Sense"><a href="#安装Sense" class="headerlink" title="安装Sense"></a>安装Sense</h3><p>进入/opt/kibana/ 运行：<code>$sudo ./bin/kibana plugin --install elastic/sense</code><br>You should now be able to access Sense with a web browser on <a href="http://localhost:5601/app/sense" target="_blank" rel="noopener">http://localhost:5601/app/sense</a></p>
+<h2 id="spring-boot-日志配置"><a href="#spring-boot-日志配置" class="headerlink" title="spring boot 日志配置"></a>spring boot 日志配置</h2><p><strong>尽量采用统一的日志输出格式</strong><br>1, JPA 的sql输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#spring.jpa.show-sql = true #不推荐这种方式</span><br><span class="line">logging.level.org.hibernate.SQL=DEBUG</span><br></pre></td></tr></table></figure>
+<h2 id="常见的部署方式"><a href="#常见的部署方式" class="headerlink" title="常见的部署方式"></a>常见的部署方式</h2><p>由于logstash比较消耗系统资源， 采用filebeat 来采集数据， 然后推送到logstash。 简单的case可以将logstash elasticsearch  kibana 放在一个虚拟机。 filebeat可以分别安装在各个对应的微服务上。 <strong>注意：</strong>当这些部署在不同的机器上的时候，需要打开对应的端口。 对应的配置也需要相对修改下。<br><strong>打开logstash的端口：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo firewall-cmd --zone=public --add-port=5044/tcp --permanent</span><br><span class="line">$ sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<p><strong>filebeat的配置修改</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">logstash:</span><br><span class="line">    # The Logstash hosts</span><br><span class="line">    hosts: [&quot;192.168.1.186:5044&quot;]</span><br></pre></td></tr></table></figure>
+<p><strong>修改hostName</strong><br>如果微服务部署在不同的虚拟机中， 可以通过修改hostname，然后在ES的index中通过hostname 来区分日志的来源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hostnamectl status</span><br><span class="line"># hostnamectl set-hostname Your-New-Host-Name-Here</span><br></pre></td></tr></table></figure>
+<h2 id="关于日志采集的策略"><a href="#关于日志采集的策略" class="headerlink" title="关于日志采集的策略"></a>关于日志采集的策略</h2><p>（网上未提及此topic）<br>配置logstash是件麻烦事情。 一下两种策略互相冲突<br><strong>1， 保证所有的log都index到ES</strong><br>这中策略方便用户查找问题， 因为所有的log都可以搜索到<br><strong>2， 严格过滤， 只提取我们需要的log信息</strong><br>这种很方便做统计， 但是其他很多log会被过滤掉， 用来找问题不方便。</p>
+<h2 id="服务器时间设置"><a href="#服务器时间设置" class="headerlink" title="服务器时间设置"></a>服务器时间设置</h2><p>最好保证日志源的服务器时间和ELK的数据库服务器时间一直<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-11
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Elastic-Technologies/Logstash-Filter/" rel="prev" title="Logstash Filter 配置">
+                                  
+                                      Logstash Filter 配置
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Elastic-Technologies/Elasticsearch-Mapping/" rel="prev" title="Elasticsearch 自定义Mapping">
+                                    
+                                        Elasticsearch 自定义Mapping
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Metricbeat-Usage/">Metricbeat 的使用</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Logstash-Filter/">Logstash Filter 配置</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/">Elasticsearch 自定义Mapping</a></li>
+            
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Kibana-Security-xpack/">Kibana 5.x 加强安全 - x-pack篇</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: '使用ELK来做日志归总',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ELK-初探"><span class="toc-text">ELK 初探</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#平台"><span class="toc-text">平台</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统架构图"><span class="toc-text">系统架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#软件的安装"><span class="toc-text">软件的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#logstash-安装"><span class="toc-text">logstash 安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他软件的repositories"><span class="toc-text">其他软件的repositories</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileBeat-使用"><span class="toc-text">FileBeat 使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LogStash-配置"><span class="toc-text">LogStash 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#连通filebeat和logstash"><span class="toc-text">连通filebeat和logstash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Grok-Filter-Plugin解析日志-（spring-boot-的默认日志格式）"><span class="toc-text">使用Grok Filter Plugin解析日志 （spring boot 的默认日志格式）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改logstash配置，输出到elasticsearch"><span class="toc-text">修改logstash配置，输出到elasticsearch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看结果"><span class="toc-text">查看结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装Sense"><span class="toc-text">安装Sense</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-日志配置"><span class="toc-text">spring boot 日志配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见的部署方式"><span class="toc-text">常见的部署方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于日志采集的策略"><span class="toc-text">关于日志采集的策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#服务器时间设置"><span class="toc-text">服务器时间设置</span></a></li></ol></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
+                    <div class="name">
+                        
+                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
+                        
+                        &nbsp;&nbsp;xaoxuu&#39;s blog
+                    </div>
+                </a></li>
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

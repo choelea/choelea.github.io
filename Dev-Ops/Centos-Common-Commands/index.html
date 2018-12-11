@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Centos 常用命令 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
+    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/">
+    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/about/">
+    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
+											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/">
+											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/about/">
+											<i class="fas fa-user fa-fw"></i>&nbsp;关于
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Dev-Ops/Centos-Common-Commands" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">Centos 常用命令</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-11
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <blockquote>
+<p>以下命令仅在centos7上验证过</p>
+</blockquote>
+<h3 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h3><h4 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h4><p>示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install elasticsearch</span><br></pre></td></tr></table></figure></p>
+<h4 id="rpm-包安装"><a href="#rpm-包安装" class="headerlink" title="rpm  包安装"></a>rpm  包安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -ivh kibana-4.6.6-x86_64.rpm  // 安装后通过 sudo service kibana start 来启动</span><br></pre></td></tr></table></figure>
+<h4 id="查看安装程序路径"><a href="#查看安装程序路径" class="headerlink" title="查看安装程序路径"></a>查看安装程序路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -ql kibana  // 查看到安装在了/opt/kibana</span><br></pre></td></tr></table></figure>
+<h3 id="开放端口"><a href="#开放端口" class="headerlink" title="开放端口"></a>开放端口</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo firewall-cmd --zone=public --add-port=80/tcp --permanent</span><br><span class="line">$ sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+<h3 id="netstat-使用"><a href="#netstat-使用" class="headerlink" title="netstat 使用"></a>netstat 使用</h3><h4 id="查看某个服务是否在运行"><a href="#查看某个服务是否在运行" class="headerlink" title="查看某个服务是否在运行"></a>查看某个服务是否在运行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -aple | grep nginx</span><br></pre></td></tr></table></figure>
+<p>只查看tcp或者udp的connections需要添加-t参数: <code>sudo netstat -nplt</code> </p>
+<blockquote>
+<p>更多更实用的netstat命令参考：<a href="http://www.binarytides.com/linux-netstat-command-examples/" target="_blank" rel="noopener">Linux netstat 命令示例</a></p>
+</blockquote>
+<h3 id="查看centos-版本"><a href="#查看centos-版本" class="headerlink" title="查看centos 版本"></a>查看centos 版本</h3><p>cat /etc/centos-release<br><strong>设置环境变量</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export KAFKA_HOME=/home/osboxes/kafka_2.10-0.10.0.1</span><br><span class="line">echo $KAFKA_HOME</span><br></pre></td></tr></table></figure>
+<h3 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
+<h3 id="查看目录所占空间大小"><a href="#查看目录所占空间大小" class="headerlink" title="查看目录所占空间大小"></a>查看目录所占空间大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -smh *</span><br></pre></td></tr></table></figure>
+<h3 id="统计文件夹下面的文件数量"><a href="#统计文件夹下面的文件数量" class="headerlink" title="统计文件夹下面的文件数量"></a>统计文件夹下面的文件数量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -1 | wc -l</span><br></pre></td></tr></table></figure>
+<h3 id="grep-搜索文件内容"><a href="#grep-搜索文件内容" class="headerlink" title="grep 搜索文件内容"></a>grep 搜索文件内容</h3><p><strong>指定的文件类型中查找</strong><br>当前子目录中查找： <code>grep -r abcd *.properties</code> 当前子目录递归查找含有<code>abcd</code> 的*.properties 文件<br>指定目录及子目录中查找：<code>grep -r 3306 /home/okchem/storage92g/srm/</code> </p>
+<h3 id="拷贝整个文件夹"><a href="#拷贝整个文件夹" class="headerlink" title="拷贝整个文件夹"></a>拷贝整个文件夹</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp -avr /home/vivek/letters /usb/backup</span><br></pre></td></tr></table></figure>
+<h3 id="用户和组"><a href="#用户和组" class="headerlink" title="用户和组"></a>用户和组</h3><blockquote>
+<p>/etc/group file that lists all users groups  可以使用cut命令列出来<code>cut -d: -f1 /etc/group</code></p>
+</blockquote>
+<p><strong>查看当前用户的group:    </strong> <code>$ groups</code><br><strong>查看用户的group:    </strong> <code>$ groups root</code> <code>id -Gn root</code><br><strong>添加用户到组:    </strong> <code>$ sudo usermod -a -G osboxes nginx</code> 添加用户nginx到组osboxes  <code>usermod -a -G &lt;groupname&gt; username</code> 添加完成请用<code>groups &lt;username&gt;</code> 来验证<br><strong>获取组的所有用户:    </strong> <code>getent group kibana</code></p>
+<p>其他有用资源： <a href="https://segmentfault.com/a/1190000004141370" target="_blank" rel="noopener">CentOS7之新建用户与SSH登陆</a></p>
+<h3 id="文件权限"><a href="#文件权限" class="headerlink" title="文件权限"></a>文件权限</h3><h4 id="修改文件-夹-owner"><a href="#修改文件-夹-owner" class="headerlink" title="修改文件[夹]owner"></a>修改文件[夹]owner</h4><p>chown 代表change owner；<code>chown --help</code> 提供了更详细的信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chown -R okchem:root /ebs</span><br></pre></td></tr></table></figure></p>
+<h4 id="修改文件-夹-访问权限"><a href="#修改文件-夹-访问权限" class="headerlink" title="修改文件[夹]访问权限"></a>修改文件[夹]访问权限</h4><p>chmod 代表change mode;<br>例如：<code>chmod 644 important.txt</code> owner可读可写,group可读，others可读</p>
+<blockquote>
+<p>First position refers to the user. Second refers to the group of the user, and the third refers to all others.4 = read 2 = write 1 = execute</p>
+</blockquote>
+<p>文件权限更详细的解释可以参考：<a href="https://www.pluralsight.com/blog/it-ops/linux-file-permissions" target="_blank" rel="noopener">Linux File Permissions</a></p>
+<h3 id="PS-命令"><a href="#PS-命令" class="headerlink" title="PS 命令"></a>PS 命令</h3><h4 id="查看java进程-ps-ef-grep-java"><a href="#查看java进程-ps-ef-grep-java" class="headerlink" title="查看java进程 ps -ef|grep java"></a>查看java进程 <code>ps -ef|grep java</code></h4><h4 id="产看进程的详细信息-ps-auxwe-grep-subscribe"><a href="#产看进程的详细信息-ps-auxwe-grep-subscribe" class="headerlink" title="产看进程的详细信息 ps -auxwe | grep subscribe"></a>产看进程的详细信息 <code>ps -auxwe | grep subscribe</code></h4><h3 id="命令行快捷键"><a href="#命令行快捷键" class="headerlink" title="命令行快捷键"></a>命令行快捷键</h3><p><strong>CTRL-a</strong> 光标移至行首<br><strong>CTRL-e</strong> 光标移至行尾<br><strong>CTRL-u</strong> 删除整行<br><strong>CTRL-h</strong>    删除光标前字符</p>
+<h3 id="gzip-gunzip"><a href="#gzip-gunzip" class="headerlink" title="gzip / gunzip"></a>gzip / gunzip</h3><p> 压缩单个文件 <code>gzip fileName</code> 压缩后的名字=原文件名字加上后缀.gz<br> 解压缩单个文件<code>gunzip filename</code> 或者 <code>gzip -d filename</code><br>gzip 不能用来压缩整个文件夹至一个.gz 文件。压缩整个文件夹请参考targ + gzip 命令 即： <code>tar -z</code>命令。</p>
+<blockquote>
+<p>gzip -r  dictName 命令会压缩整个文件夹dictName 里面的所有文件，每个文件被压缩成一个单独的*.gz 文件</p>
+</blockquote>
+<h3 id="tar-命令"><a href="#tar-命令" class="headerlink" title="tar 命令"></a>tar 命令</h3><p>gzip / bzip2 是用来压缩单个文件， tar是用来归档。 所以tar结合gzip/bzip2 可以方便的进行整个文件夹的压缩及归档。<br>压缩整个文件夹<code>tar -zcvf outputFileName folderToCompress</code><br><a href="https://www.tecmint.com/18-tar-command-examples-in-linux/" target="_blank" rel="noopener">Examples</a></p>
+<blockquote>
+<p>bzip2 </p>
+</blockquote>
+<h3 id="sftp-命令"><a href="#sftp-命令" class="headerlink" title="sftp 命令"></a>sftp 命令</h3><h4 id="sftp登录"><a href="#sftp登录" class="headerlink" title="sftp登录"></a>sftp登录</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sftp  name@123.21.331.1</span><br></pre></td></tr></table></figure>
+<h4 id="sftp-下载文件夹"><a href="#sftp-下载文件夹" class="headerlink" title="sftp 下载文件夹"></a>sftp 下载文件夹</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get -r  folder  /home/joe/</span><br></pre></td></tr></table></figure>
+<h4 id="sftp-上传文件"><a href="#sftp-上传文件" class="headerlink" title="sftp 上传文件"></a>sftp 上传文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put  /name1.html  /name2/</span><br></pre></td></tr></table></figure>
+<h3 id="crontab-命令"><a href="#crontab-命令" class="headerlink" title="crontab 命令"></a>crontab 命令</h3><p>创建执行任务， 添加cron job<br>参考cronjob <code>crontab -l</code><br>编辑cronjob <code>crontab -e</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * /data/scripts/mysql-job.sh A</span><br><span class="line">20 1 * * 0 /data/scripts/mysql-job.sh I</span><br></pre></td></tr></table></figure>
+<p>两个cron job 分别：</p>
+<ol>
+<li>每天1点执行</li>
+<li>每周日1点20 执行</li>
+</ol>
+<p>参考：crontab 时间可以参考： <a href="https://www.cnblogs.com/intval/p/5763929.html" target="_blank" rel="noopener">https://www.cnblogs.com/intval/p/5763929.html</a></p>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-11
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Dev-Ops/Git-Commands/" rel="prev" title="Git 常用命令">
+                                  
+                                      Git 常用命令
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Database-Technologies/Mysql-Administration/" rel="prev" title="Mysql 运维相关脚本收集">
+                                    
+                                        Mysql 运维相关脚本收集
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Dev-Ops/Java-IDE-Useful-Skills/">Java 开发工具使用技巧收集</a></li>
+            
+                <li><a href="https://choelea.github.io/Dev-Ops/Git-Commands/">Git 常用命令</a></li>
+            
+                <li><a href="https://choelea.github.io/Database-Technologies/Mysql-Administration/">Mysql 运维相关脚本收集</a></li>
+            
+                <li><a href="https://choelea.github.io/Database-Technologies/mongodb-command/">MongoDB 命令 常用语句</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: 'Centos 常用命令',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#软件安装"><span class="toc-text">软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yum-安装"><span class="toc-text">yum 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpm-包安装"><span class="toc-text">rpm  包安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看安装程序路径"><span class="toc-text">查看安装程序路径</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开放端口"><span class="toc-text">开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat-使用"><span class="toc-text">netstat 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看某个服务是否在运行"><span class="toc-text">查看某个服务是否在运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看centos-版本"><span class="toc-text">查看centos 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘空间"><span class="toc-text">磁盘空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看目录所占空间大小"><span class="toc-text">查看目录所占空间大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计文件夹下面的文件数量"><span class="toc-text">统计文件夹下面的文件数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-搜索文件内容"><span class="toc-text">grep 搜索文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝整个文件夹"><span class="toc-text">拷贝整个文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和组"><span class="toc-text">用户和组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件权限"><span class="toc-text">文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-owner"><span class="toc-text">修改文件[夹]owner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-访问权限"><span class="toc-text">修改文件[夹]访问权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS-命令"><span class="toc-text">PS 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看java进程-ps-ef-grep-java"><span class="toc-text">查看java进程 ps -ef|grep java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产看进程的详细信息-ps-auxwe-grep-subscribe"><span class="toc-text">产看进程的详细信息 ps -auxwe | grep subscribe</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行快捷键"><span class="toc-text">命令行快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip-gunzip"><span class="toc-text">gzip / gunzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-命令"><span class="toc-text">tar 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sftp-命令"><span class="toc-text">sftp 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp登录"><span class="toc-text">sftp登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-下载文件夹"><span class="toc-text">sftp 下载文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-上传文件"><span class="toc-text">sftp 上传文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab-命令"><span class="toc-text">crontab 命令</span></a></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
+                    <div class="name">
+                        
+                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
+                        
+                        &nbsp;&nbsp;xaoxuu&#39;s blog
+                    </div>
+                </a></li>
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>
