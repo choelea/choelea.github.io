@@ -168,24 +168,6 @@
   </entry>
   
   <entry>
-    <title>Elasticsearch 自定义Mapping</title>
-    <link href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/"/>
-    <id>https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/</id>
-    <published>2018-12-11T09:52:56.691Z</published>
-    <updated>2018-12-11T09:52:56.692Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="Mapping-定义"><a href="#Mapping-定义" class="headerlink" title="Mapping 定义"></a>Mapping 定义</h2><p>前面有一个篇简单的关于mapping的博客，当时是基于2.4 版本。 elastic技术栈在最近很活跃，目前版本已经更新至5.x。5.x有了比较大的变化。2.4 版本的定义在5.x上大部分已经失去了意义。（比如：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/string.html" target="_blank" rel="noopener">5.x已经不再支持string 类型</a>）<br><strong>这里截取一点官网对应的</strong><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html" target="_blank" rel="noopener">定义</a>：</p><blockquote><p>elasticsearch 通过定义的映射mapping来决定文档及其字段改如何被存储和索引。比如：字段是否可以支持全文搜索; 字段是否包含日期，地理位置; 日期的格式; 自定义自动映射的规则。</p></blockquote><p>基于5.x，<a href="http://blog.csdn.net/choelea/article/details/53320140" target="_blank" rel="noopener">前面博客</a> 提到的user，uri等字段就可以使用<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/keyword.html" target="_blank" rel="noopener">keyword type</a>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PUT /business-index-*/_mapping/business</span><br><span class="line">&#123;</span><br><span class="line"> &quot;properties&quot; : &#123;</span><br><span class="line">    &quot;uri&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;user&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;keyword&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;responseStatus&quot; : &#123; &quot;type&quot; : &quot;integer&quot; &#125;,</span><br><span class="line">    &quot;responseTime&quot; : &#123; &quot;type&quot; : &quot;long&quot; &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>elastic的文档维护的算是比较好的，基本英语OK的都是直接去参考官方文档。  mapping的更新可以参考 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/indices-put-mapping.html" target="_blank" rel="noopener">elastic 官网</a>     </p>]]></content>
-    
-    <summary type="html">
-    
-      Elasticsearch 自定义Mapping
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>使用ELK来做日志归总</title>
     <link href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Logstash-Kibana-Log-Collecting/"/>
     <id>https://choelea.github.io/Elastic-Technologies/Elasticsearch-Logstash-Kibana-Log-Collecting/</id>
@@ -197,6 +179,24 @@
     <summary type="html">
     
        阐述使用ELK来做日志归总
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch 自定义Mapping</title>
+    <link href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/"/>
+    <id>https://choelea.github.io/Elastic-Technologies/Elasticsearch-Mapping/</id>
+    <published>2018-12-11T09:52:56.691Z</published>
+    <updated>2018-12-11T09:52:56.692Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Mapping-定义"><a href="#Mapping-定义" class="headerlink" title="Mapping 定义"></a>Mapping 定义</h2><p>前面有一个篇简单的关于mapping的博客，当时是基于2.4 版本。 elastic技术栈在最近很活跃，目前版本已经更新至5.x。5.x有了比较大的变化。2.4 版本的定义在5.x上大部分已经失去了意义。（比如：<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/string.html" target="_blank" rel="noopener">5.x已经不再支持string 类型</a>）<br><strong>这里截取一点官网对应的</strong><a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/mapping.html" target="_blank" rel="noopener">定义</a>：</p><blockquote><p>elasticsearch 通过定义的映射mapping来决定文档及其字段改如何被存储和索引。比如：字段是否可以支持全文搜索; 字段是否包含日期，地理位置; 日期的格式; 自定义自动映射的规则。</p></blockquote><p>基于5.x，<a href="http://blog.csdn.net/choelea/article/details/53320140" target="_blank" rel="noopener">前面博客</a> 提到的user，uri等字段就可以使用<a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/keyword.html" target="_blank" rel="noopener">keyword type</a>。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">PUT /business-index-*/_mapping/business</span><br><span class="line">&#123;</span><br><span class="line"> &quot;properties&quot; : &#123;</span><br><span class="line">    &quot;uri&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;user&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;keyword&quot; : &#123;&quot;type&quot;: &quot;keyword&quot;&#125;,</span><br><span class="line">    &quot;responseStatus&quot; : &#123; &quot;type&quot; : &quot;integer&quot; &#125;,</span><br><span class="line">    &quot;responseTime&quot; : &#123; &quot;type&quot; : &quot;long&quot; &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>elastic的文档维护的算是比较好的，基本英语OK的都是直接去参考官方文档。  mapping的更新可以参考 <a href="https://www.elastic.co/guide/en/elasticsearch/reference/5.0/indices-put-mapping.html" target="_blank" rel="noopener">elastic 官网</a>     </p>]]></content>
+    
+    <summary type="html">
+    
+      Elasticsearch 自定义Mapping
     
     </summary>
     
