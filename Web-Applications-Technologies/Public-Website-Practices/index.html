@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>对公网站研发的实践经验 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Web-Applications-Technologies/Public-Website-Practices" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">对公网站研发的实践经验</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>有过很多的面向员工系统经验的工程师，在开发一个面向客户的web网站的时候会面临和需要考虑的问题更多，也更复杂。下面列举在开发对公网站时候需要考虑的一些问题和实践。</p>
+<h3 id="是否有SEO-需求"><a href="#是否有SEO-需求" class="headerlink" title="是否有SEO 需求"></a>是否有SEO 需求</h3><p>当有SEO需求的时候，在选择前端框架的时候，需要注意对SEO的支持。 各种流行的框架： React和Angularjs 等SPA的页面框架大部分在SEO方面都多少有些问题<br>SEO 优化：</p>
+<ol>
+<li>URL 静态化，可读性 (比如： products?category=shoes 可以静态化为/shoes/product, 对应的pattern为：/{category}/products)</li>
+<li>页面布局，图片的URL，图片的alt信息 等都需要考虑</li>
+<li>网站内的内链</li>
+<li>异步使用的恰当，简单的链接更有助于网站收录<blockquote>
+<p>SEO 的详细介绍请参考：<a href="/assets/preimg/Web-Applications-Technologies/%E7%BD%91%E7%AB%99SEO%E7%BB%8F%E9%AA%8C%E6%80%BB%E7%BB%93">网站SEO优化最佳实践</a></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="网页速度"><a href="#网页速度" class="headerlink" title="网页速度"></a>网页速度</h3><p>网页相应速度涉及用户体验，同时也会影响到SEO的排名， 可以通过<a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="noopener">Google Page Insights</a> 来检查网页速度相关问题。 一般优化网页速度的包括：</p>
+<ol>
+<li>优化图片。 优化图片一般都是性价比高的提速方案。 优化图片分为：<ul>
+<li>优化格式，压缩大小。 （之前的做了一次产品的旧图片的压缩，但是还有其他图片需要进一步排查压缩，比如banner）</li>
+<li>合并小图片，减少网络请求。将一个个小图片合并成一个大图片，用css 控制显示范围。</li>
+<li>懒加载, 针对页面上图片比较多的情况， 比如转灯（bootstrap的carousel），默认情况是所有的图片请求都一直并发；当图片过多的时候对页面的相应影响很大，这个时候要考虑图片的懒加载机制。懒加载参考：<a href="/Web-Applications-Technologies/image-lazy-loading">页面懒加载机制</a></li>
+</ul>
+</li>
+<li>合并压缩JS 和 CSS 。 （减小文件大小，减少网络请求）</li>
+<li>CDN 的引入。 暂时不考虑付费的CND，但是针对jquery及bootstrap等知名的第三方资源，可以使用免费的CDN. (具体依赖预生产的测试来做最终决定)</li>
+<li>代码优化。 代码优化比较难在短时间完成。但是可以逐步挑选重要的页面来优化：<br>a)    按需加载， js 引入位置，延迟/异步加载阻塞的js文件。<br>b)    优化cookie，减少cookie的体积<br>c)    Js css规范化</li>
+<li>Nginx优化。 在查看webpagetest的结果的时候，发现https的握手时间也占了不少比例，针对nginx的ssl的优化也是必须的。（大数据新闻的图片慢有可能和这个有关，具体需要通过测试来验证） （made-in-china 网站仍旧采用的是http，在速度上有很大优势）</li>
+<li>将静态资源的请求放入另外的domain来提高浏览器请求的并发 （效仿made-in-china 的做法）</li>
+<li>页面静态化处理。 前面讲到的都和服务端代码无关，页面静态化处理主要是在服务端提前将页面生成静态的html文件，提高并发。 目前服务器相应时间并不是主要拖慢网页的因素，因此这个优先级不高。</li>
+</ol>
+<p><strong>综合来讲，主要思想是： 减少请求次数，减少文件大小，延迟请求，异步加载，CDN缓存，最小化https的开销。 最后在完成这些之后，更深一步去规范页面内容，JS CSS 最佳实践。</strong></p>
+<h3 id="防止攻击"><a href="#防止攻击" class="headerlink" title="防止攻击"></a>防止攻击</h3><h4 id="Bot-Attack"><a href="#Bot-Attack" class="headerlink" title="Bot Attack"></a>Bot Attack</h4><p>如果网站里面有开放的POST接口，通过过一段时间就会遭遇Bot 攻击。<br>通常，添加验证码会是办法之一。 参考讨论<a href="https://stackoverflow.com/questions/15319942/preventing-bot-form-submission" target="_blank" rel="noopener">Preventing bot form submission</a> 采用google的<a href="https://www.google.com/recaptcha/intro/" target="_blank" rel="noopener">recaptcha</a> 也会是一个不错的方案。<br><a href="https://developers.google.com/recaptcha/intro" target="_blank" rel="noopener">开发者文档</a></p>
+<h3 id="下载相关"><a href="#下载相关" class="headerlink" title="下载相关"></a>下载相关</h3><p>文件下载最好不要放在网站内， 可以放在云服务器上， 比如aws的s3， 或者其他云对象服务器上。<br>注意download的response 相关的header设置等。<br>比如： apk的下载， 有些浏览器无法智能的根据文件名后缀.apk来判断是安卓的安装程序。需要显示的设置： content-type： application/vnd.android.package-archive</p>
+<h3 id="需要更多的手段来验证网站的可用性"><a href="#需要更多的手段来验证网站的可用性" class="headerlink" title="需要更多的手段来验证网站的可用性"></a>需要更多的手段来验证网站的可用性</h3><p>面向员工的系统，如果系统不可用，或者有任何问题发生，员工都会立马反应。（很可能他现在要提交个工单，提交不了，着急啊。。。） 然后面向光大客户的就不是了。 比如说， 淘宝现在用不了了，系统报错，你会想淘宝反应吗？ 我想你会去京东买了算了。。。</p>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-21
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/SEO-Public-Website-Practices/" rel="prev" title="">
+                                  
+                                      2018-12-21
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/Oauth2-Spring-Boot/" rel="prev" title="利用Spring Boot Oauth2 来熟悉oauth2 之 - Authorization Code Grant">
+                                    
+                                        利用Spring Boot Oauth2 来熟悉oauth2 之 - Authorization Code Grant
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/Spring-Boot-Oauth2-Provider-Nodejs-Client/">Nodejs oauth2 结合 Spring Boot Oauth2 自建 Oauth2 Provider</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/SEO-Public-Website-Practices/"></a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/Oauth2-Spring-Boot/">利用Spring Boot Oauth2 来熟悉oauth2 之 - Authorization Code Grant</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/image-lazy-loading/">页面图片懒加载机制</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: '对公网站研发的实践经验',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#是否有SEO-需求"><span class="toc-text">是否有SEO 需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网页速度"><span class="toc-text">网页速度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止攻击"><span class="toc-text">防止攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bot-Attack"><span class="toc-text">Bot Attack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载相关"><span class="toc-text">下载相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要更多的手段来验证网站的可用性"><span class="toc-text">需要更多的手段来验证网站的可用性</span></a></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

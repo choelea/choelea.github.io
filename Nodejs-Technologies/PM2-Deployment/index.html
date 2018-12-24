@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Centos 7 上利用pm2部署 nodejs 程序 - No Jenkins | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Nodejs-Technologies/PM2-Deployment" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">Centos 7 上利用pm2部署 nodejs 程序 - No Jenkins</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>本文探索如何利用pm2 来部署nodejs的程序到centos系统上。</p>
+<h2 id="参考资源"><a href="#参考资源" class="headerlink" title="参考资源"></a>参考资源</h2><ul>
+<li>nodejs的安装 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="noopener">Installing Node.js via package manager</a></li>
+<li>npm 权限问题 <a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="noopener">Fixing npm permissions</a></li>
+<li>pm2 deploy <a href="http://pm2.keymetrics.io/docs/usage/deployment/" target="_blank" rel="noopener">PM2 deployment</a></li>
+<li>git 安装及版本升级 <a href="https://blacksaildivision.com/git-latest-version-centos" target="_blank" rel="noopener">How to install GIT on CentOS</a></li>
+<li><a href="https://keymetrics.io/2014/06/25/ecosystem-json-deploy-and-iterate-faster/" target="_blank" rel="noopener">Deploy and iterate faster, hello ecosystem.json</a><h2 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h2></li>
+</ul>
+<p><code>git version</code>     git version 2.11.1<br><code>node -v</code>             v8.0.0<br><code>pm2 -v</code>             2.5.0</p>
+<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>参考上面的资源链接，在目标服务器上安装nodejs， 本次尝试采用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl --silent --location https://rpm.nodesource.com/setup_8.x | bash -</span><br><span class="line">yum -y install nodejs</span><br></pre></td></tr></table></figure>
+<h2 id="安装pm2"><a href="#安装pm2" class="headerlink" title="安装pm2"></a>安装pm2</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install pm2@latest -g</span><br></pre></td></tr></table></figure>
+<h2 id="解决SSH用户的权限问题"><a href="#解决SSH用户的权限问题" class="headerlink" title="解决SSH用户的权限问题"></a>解决SSH用户的权限问题</h2><p>用root用户显然是不推荐的，然后安装nodejs和npm其他package的安装，我们可能都是通过sudo来安装的。当我们发布程序的时候，我们使用的ssh用户，这里必须解决掉npm perssmision的问题。 参考资源给出了很好的官方的指导；本文采用了第一种方式： <code>sudo chown -R $(whoami) $(npm config get prefix)/{lib/node_modules,bin,share}</code> 使用这边命令将owner设置为当前用户。</p>
+<blockquote>
+<p>网上的很多文章都忽略了这个问题，这里可以暂时跳过， 到后面的pm2 deploy的时候，问题爆发了再针对性的来解决。</p>
+</blockquote>
+<h2 id="git-安装"><a href="#git-安装" class="headerlink" title="git 安装"></a>git 安装</h2><p>在目标服务器上安装git；（如果通过ssh push的方式，目前机器也可以不安装git）。本次尝试采用在目标服务器上直接pull代码。git 安装参考上面的资源链接。 本文采用了第三方repo来简化安装。（<em>并非最佳实践，使用第三方的repo需要三思而后行</em> , 手动安装请参考:<a href="https://www.digitalocean.com/community/tutorials/how-to-install-git-on-centos-7" target="_blank" rel="noopener">Git Installing from source</a>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm </span><br><span class="line">sudo yum install -y git</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>git 版本过低可能引发无法pull到最新的代码的问题。 <a href="https://github.com/Unitech/pm2/issues/2436" target="_blank" rel="noopener">Ticket Reference</a>  CentOS自带的repository只有旧版本和最新版本是1.8.x版本。 </p>
+</blockquote>
+<h2 id="示例代码库"><a href="#示例代码库" class="headerlink" title="示例代码库"></a>示例代码库</h2><p>示例代码： <a href="https://github.com/choelea/image-utils-web.git" target="_blank" rel="noopener">https://github.com/choelea/image-utils-web.git</a>  branches/pm2-deploy-1</p>
+<h2 id="pm2-发布"><a href="#pm2-发布" class="headerlink" title="pm2 发布"></a>pm2 发布</h2><p>参考<a href="http://pm2.keymetrics.io/docs/usage/deployment/" target="_blank" rel="noopener">官方文档</a>， 截止这篇文章的时间，官方文档和代码有些不一致；但是不影响其参考价值。 </p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><ul>
+<li>发布机器（可以是你的laptop）可以ssh到目标服务器</li>
+<li>目标服务器可以ssh到git拉去代码<blockquote>
+<p>github上的开源代码不需要ssh可以直接通过https的链接拉去</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="配置ssh用户"><a href="#配置ssh用户" class="headerlink" title="配置ssh用户"></a>配置ssh用户</h4><p>一般的云服务器可以通过web界面的console去配置。 如果没有可以已经有用户名和密码的登录方式，可以通过下面的命令来设置ssh。(后面有示例)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ ssh-copy-id node@myserver.com</span><br></pre></td></tr></table></figure>
+<p>同样方式设置目标服务器 -&gt; git 服务器的ssh访问。</p>
+<h3 id="创建deploy的配置文件"><a href="#创建deploy的配置文件" class="headerlink" title="创建deploy的配置文件"></a>创建deploy的配置文件</h3><p>通过<code>pm2 ecosystem</code> 生成模板进行修改。 可以是json,js,yaml 文件；优选前两种。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  /**</span><br><span class="line">   * Application configuration section</span><br><span class="line">   * http://pm2.keymetrics.io/docs/usage/application-declaration/</span><br><span class="line">   */</span><br><span class="line">  apps : [</span><br><span class="line"></span><br><span class="line">    // First application</span><br><span class="line">    &#123;</span><br><span class="line">      name      : &apos;image-utils-web&apos;,</span><br><span class="line">      script    : &apos;server.js&apos;,</span><br><span class="line">      // env: &#123;  If we don&apos;t comment here, it will override below deploy config</span><br><span class="line">      //   PORT: 3011</span><br><span class="line">      // &#125;,</span><br><span class="line">      env_production : &#123;</span><br><span class="line">        NODE_ENV: &apos;production&apos;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  /**</span><br><span class="line">   * Deployment section</span><br><span class="line">   * http://pm2.keymetrics.io/docs/usage/deployment/</span><br><span class="line">   */</span><br><span class="line">  deploy : &#123;</span><br><span class="line">    production : &#123;</span><br><span class="line">      user : &apos;joe&apos;,// ssh 用户名</span><br><span class="line">      host : &apos;192.168.1.188&apos;, // 目标服务器地址</span><br><span class="line">      ref  : &apos;origin/master&apos;,</span><br><span class="line">      repo : &apos;https://github.com/choelea/image-utils-web.git&apos;,</span><br><span class="line">      path : &apos;/home/joe/nodejsapp/nodejs-playaround&apos;, // 目标服务器部署地址</span><br><span class="line">      &apos;post-deploy&apos; : &apos;npm install &amp;&amp; pm2 reload ecosystem.config.js --env production&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    dev : &#123;</span><br><span class="line">      user : &apos;osboxes&apos;,</span><br><span class="line">      host : &apos;192.168.1.186&apos;,</span><br><span class="line">      ref  : &apos;origin/master&apos;,</span><br><span class="line">      repo : &apos;https://github.com/choelea/image-utils-web.git&apos;,</span><br><span class="line">      path : &apos;/home/osboxes/temp&apos;,</span><br><span class="line">      &apos;post-deploy&apos; : &apos;npm install &amp;&amp; pm2 reload ecosystem.config.js --env dev&apos;,</span><br><span class="line">      env  : &#123;</span><br><span class="line">        NODE_ENV: &apos;dev&apos;,</span><br><span class="line">		PORT: 3012</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>运行命令<code>pm2 deploy ecosystem.config.js dev</code> 即可进行对应环境的部署。（部署前需要运行<code>pm2 deploy ecosystem.config.js dev setup</code> 来创建对应的文件夹。<em>一般会有current，shared， source 三个文件夹，current是个软连接指向了source</em>）</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><h3 id="本地虚拟机测试示例："><a href="#本地虚拟机测试示例：" class="headerlink" title="本地虚拟机测试示例："></a>本地虚拟机测试示例：</h3><p>如下是利用本地已经生成好的公私钥(id_rsa, id_rsa.pub)，将公钥上传至目标服务器192.168.1.186绑定用户osboxes。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id -i id_rsa.pub osboxes@192.168.1.186</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter                                                             out any that are already installed</span><br><span class="line">/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompt                                                            ed now it is to install the new keys</span><br><span class="line">osboxes@192.168.1.186&apos;s password:</span><br><span class="line"></span><br><span class="line">Number of key(s) added: 1</span><br><span class="line"></span><br><span class="line">Now try logging into the machine, with:   &quot;ssh &apos;osboxes@192.168.1.186&apos;&quot;</span><br><span class="line">and check to make sure that only the key(s) you wanted were added.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Administrator@PC-20160321GFRJ MINGW64 ~/.ssh</span><br><span class="line">$ ssh osboxes@192.168.1.186</span><br><span class="line">Last login: Wed Jul  5 1</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>windows 系统默认没有ssh命令，如果安装了有git，可以通过git bash来运行ssh的命令。</p>
+</blockquote>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-03-05T09:03:32+08:00" content="2018-03-05">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-03-05
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Nodejs-Technologies/raneto-create-markdown-site/" rel="prev" title="使用Raneto结合Github来搭建简易个人的BLog">
+                                  
+                                      使用Raneto结合Github来搭建简易个人的BLog
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Nodejs-Technologies/NPM-Publish-Package/" rel="prev" title="向NPM仓库发布自己的Package">
+                                    
+                                        向NPM仓库发布自己的Package
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/Spring-Boot-Actuator/">Spring Boot Actuator</a></li>
+            
+                <li><a href="https://choelea.github.io/Nodejs-Technologies/raneto-create-markdown-site/">使用Raneto结合Github来搭建简易个人的BLog</a></li>
+            
+                <li><a href="https://choelea.github.io/Nodejs-Technologies/NPM-Publish-Package/">向NPM仓库发布自己的Package</a></li>
+            
+                <li><a href="https://choelea.github.io/Nodejs-Technologies/nodejs-nvm-install-uninstall/">如何在Linux上安装Node.js</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: 'Centos 7 上利用pm2部署 nodejs 程序 - No Jenkins',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资源"><span class="toc-text">参考资源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#版本"><span class="toc-text">版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装nodejs"><span class="toc-text">安装nodejs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装pm2"><span class="toc-text">安装pm2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决SSH用户的权限问题"><span class="toc-text">解决SSH用户的权限问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-安装"><span class="toc-text">git 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例代码库"><span class="toc-text">示例代码库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pm2-发布"><span class="toc-text">pm2 发布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#前提条件"><span class="toc-text">前提条件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置ssh用户"><span class="toc-text">配置ssh用户</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建deploy的配置文件"><span class="toc-text">创建deploy的配置文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地虚拟机测试示例："><span class="toc-text">本地虚拟机测试示例：</span></a></li></ol></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

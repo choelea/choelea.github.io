@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   
-  <title>逍客 - Stay Happy and Enjoy Life!</title>
+  <title>Elasticsearch 模糊匹配 | 逍客 - Stay Happy and Enjoy Life!</title>
   
   <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
   
@@ -62,26 +62,8 @@
   							</li>
         			
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
-    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="/">
-    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-  								</a>
-  							</li>
-        			
-    						<li>
     							<a class="nav flat-box" href="/archives/">
     								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/about/">
-    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
   								</a>
   							</li>
         			
@@ -128,26 +110,8 @@
                   </li>
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
-											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
 										<a class="nav  flat-box" href="/archives/">
 											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/about/">
-											<i class="fas fa-user fa-fw"></i>&nbsp;关于
 										</a>
                   </li>
               
@@ -163,11 +127,11 @@
             <article id="post-Elastic-Technologies/elasticsearch-fuzzy-query" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
     <section class="meta">
         
-            <h1 class="title">2018-12-11</h1>
+            <h1 class="title">Elasticsearch 模糊匹配</h1>
         
         <time class="time">
             <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-            2018-12-11
+            2018-12-21
         </time>
         
           <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
@@ -182,17 +146,15 @@
     <section class="article typo">
 
         <div class="article-entry" itemprop="articleBody">
-            <hr>
-<p>title:  Elasticsearch 模糊匹配<br>description: fuzzy 查询是一个词项级别的查询，所以它不做任何分析。它通过某个词项以及指定的 fuzziness 查找到词典中所有的词项。 fuzziness 默认设置为 AUTO 。<br>…</p>
-<p>这个是一个模板, 请务必将showOnHome 修改为true</p>
+            <p>这个是一个模板, 请务必将showOnHome 修改为true</p>
 <p><a href="https://www.elastic.co/guide/cn/elasticsearch/guide/cn/fuzzy-scoring.html" target="_blank" rel="noopener">https://www.elastic.co/guide/cn/elasticsearch/guide/cn/fuzzy-scoring.html</a><br>以下来自<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">模糊性评分编辑</span><br><span class="line">用户喜欢模糊查询。他们认为这种查询会魔法般的找到正确拼写组合。 很遗憾，实际效果平平。</span><br><span class="line"></span><br><span class="line">假设我们有1000个文档包含 ``Schwarzenegger`` ，只是一个文档的出现拼写错误 ``Schwarzeneger`` 。 根据 term frequency/inverse document frequency 理论，这个拼写错误文档比拼写正确的相关度更高，因为错误拼写出现在更少的文档中！</span><br><span class="line"></span><br><span class="line">换句话说，如果我们对待模糊匹配 类似其他匹配方法，我们将偏爱错误的拼写超过了正确的拼写，这会让用户抓狂。</span><br></pre></td></tr></table></figure></p>
 
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:18:10+08:00" content="2018-12-21">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-11
+                本文最后更新于：2018-12-21
             </time>
             
         </section>
@@ -204,9 +166,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
                             <h4>
-                                <a href="/Elastic-Technologies/spring-data-elasticsearch-2.1.12-highlight/" rel="prev" title="文档的title，页面及列表都会展示">
+                                <a href="/Elastic-Technologies/Elasticsearch-Kibana-Security-xpack/" rel="prev" title="Kibana 5.x 加强安全 - x-pack篇">
                                   
-                                      文档的title，页面及列表都会展示
+                                      Kibana 5.x 加强安全 - x-pack篇
                                   
                                 </a>
                             </h4>
@@ -219,9 +181,9 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Elastic-Technologies/Nignx-Kibana-Security/" rel="prev" title="kibana的访问控制 - Nginx 反向代理 - 免费">
+                                <a href="/Elastic-Technologies/Elasticsearch-6_2-Restful-API/" rel="prev" title="Elastcisearch 6.2 Restful API">
                                     
-                                        kibana的访问控制 - Nginx 反向代理 - 免费
+                                        Elastcisearch 6.2 Restful API
                                     
                                 </a>
                             </h4>
@@ -250,13 +212,13 @@
         <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
         <ul>
             
-                <li><a href="https://choelea.github.io/Elastic-Technologies/spring-data-elasticsearch-quick-start-2/">Spring Data Elasticsearch 快速上手全文检索 - 进阶</a></li>
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Logstash-Kibana-Log-Collecting/">使用ELK来做日志归总</a></li>
             
-                <li><a href="https://choelea.github.io/Elastic-Technologies/spring-data-elasticsearch-2.1.12-highlight/">文档的title，页面及列表都会展示</a></li>
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-Kibana-Security-xpack/">Kibana 5.x 加强安全 - x-pack篇</a></li>
             
-                <li><a href="https://choelea.github.io/Elastic-Technologies/Nignx-Kibana-Security/">kibana的访问控制 - Nginx 反向代理 - 免费</a></li>
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-6_2-Restful-API/">Elastcisearch 6.2 Restful API</a></li>
             
-                <li><a href="https://choelea.github.io/Elastic-Technologies/Metricbeat-Usage/">Metricbeat 的使用</a></li>
+                <li><a href="https://choelea.github.io/Elastic-Technologies/Elasticsearch-2_4-Restful-Api/">Elastcisearch 2.4 Restful API</a></li>
             
         </ul>
     </div>
@@ -294,7 +256,7 @@
 
 <script>
     window.subData = {
-        title: '',
+        title: 'Elasticsearch 模糊匹配',
         tools: true
     }
 </script>
@@ -340,7 +302,7 @@
         <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
     </header>
     <div class="content pure">
-      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+      感谢留下评论和指出错误的朋友!
     </div>
   </section>
 
@@ -359,15 +321,6 @@
     
     
         
-    <section class="m_widget tagcloud">
-        <header class="header pure">
-            <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;标签</div>
-        </header>
-        <div class="content pure">
-            <a href="/tags/Mongo/" style="font-size: 14px; color: #999">Mongo</a> <a href="/tags/Mysql/" style="font-size: 24px; color: #555">Mysql</a> <a href="/tags/数据库/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/运维/" style="font-size: 14px; color: #999">运维</a>
-        </div>
-    </section>
-
 
     
     
@@ -396,15 +349,6 @@
     </header>
     <div class="content pure">
         <ul class="entry" id="links">
-            
-                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
-                    <div class="name">
-                        
-                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
-                        
-                        &nbsp;&nbsp;xaoxuu&#39;s blog
-                    </div>
-                </a></li>
             
         </ul>
     </div>
@@ -506,9 +450,7 @@
 
 
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>
-    AV.initialize("HnFN3camhSX52IMir3lqT3hM-gzGzoHsz", "vJsgB1TGKlmniiQsWp51HJaJ"); 
-  </script>
+  <script>AV.initialize("", "");</script>
   <script>
   function showTime(Counter) {
     var query = new AV.Query(Counter);

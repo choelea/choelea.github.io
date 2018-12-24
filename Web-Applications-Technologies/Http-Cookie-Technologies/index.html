@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Http Cookie 探索 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Web-Applications-Technologies/Http-Cookie-Technologies" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">Http Cookie 探索</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>Meta 信息不见了</p>
+<p>参考：<br><a href="http://blog.csdn.net/lijing198997/article/details/9378047" target="_blank" rel="noopener">http://blog.csdn.net/lijing198997/article/details/9378047</a><br><a href="http://stackoverflow.com/questions/1062963/how-do-browser-cookie-domains-work" target="_blank" rel="noopener">http://stackoverflow.com/questions/1062963/how-do-browser-cookie-domains-work</a><br><strong>Domain and Path</strong><br>作用：定义Cookie的生效作用域，只有当域名和路径同时满足的时候，浏览器才会将Cookie发送给Server。如果没有设置Domain和Path的话，他们会被默认为当前请求页面对应值。 </p>
+<blockquote>
+<p>Cookie with Domain=.example.com will be available for <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a><br>Cookie with Domain=.example.com will be available for example.com<br>Cookie with Domain=example.com will be converted to .example.com and thus will also be available for <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a><br>Cookie with Domain=example.com will not be available for anotherexample.com<br>跨域的请求是无法设置cookie的。 （）</p>
+</blockquote>
+<p><strong>Example：</strong></p>
+<h3 id="Tomcat-Java-Web-App通过服务端来设置浏览器cookie"><a href="#Tomcat-Java-Web-App通过服务端来设置浏览器cookie" class="headerlink" title="Tomcat Java Web App通过服务端来设置浏览器cookie"></a>Tomcat Java Web App通过服务端来设置浏览器cookie</h3><p>服务端在请求的返回中向客户端的浏览器添加cookie。 </p>
+<blockquote>
+<p>示例的服务的context path 为/bee</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@RequestMapping(value = &quot;/cookietest&quot;, headers = &quot;Accept=image/**&quot;, method = RequestMethod.GET)</span><br><span class="line">public ResponseEntity&lt;?&gt; cookieTest(final HttpServletRequest request,HttpServletResponse response) &#123;</span><br><span class="line">	Cookie cookie1 = new Cookie(&quot;cookie-1&quot;,UUID.randomUUID().toString());</span><br><span class="line">	cookie1.setDomain(&quot;diaoyouyun.com&quot;);</span><br><span class="line">	cookie1.setPath(&quot;/&quot;);</span><br><span class="line">	response.addCookie(cookie1);</span><br><span class="line">				</span><br><span class="line">	Cookie cookie2 = new Cookie(&quot;cookie2&quot;,&quot;Cookie2&quot;);</span><br><span class="line">	cookie2.setDomain(&quot;www.diaoyouyun.com&quot;);</span><br><span class="line">	cookie2.setPath(&quot;/bee/collect&quot;);</span><br><span class="line">	response.addCookie(cookie2);</span><br><span class="line">	</span><br><span class="line">	Cookie cookie3 = new Cookie(&quot;cookie3&quot;,&quot;cookie3&quot;);</span><br><span class="line">	cookie3.setDomain(&quot;www.example.com&quot;);</span><br><span class="line">	response.addCookie(cookie3);</span><br><span class="line">	</span><br><span class="line">	Cookie cookie4 = new Cookie(&quot;cookie4&quot;,&quot;cookie4&quot;);</span><br><span class="line">	response.addCookie(cookie4);</span><br><span class="line">   	return ok();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="测试一"><a href="#测试一" class="headerlink" title="测试一"></a>测试一</h3><p>请求 <a href="http://diaoyouyun.com/bee/cookietest" target="_blank" rel="noopener">http://diaoyouyun.com/bee/cookietest</a> 如下：<br><img src="/assets/preimg/Web-Applications-Technologies/cookie-1.png" alt="cookietest"></p>
+<p>那些cookie会被接受呢？访问<a href="http://diaoyouyun.com/bee" target="_blank" rel="noopener">http://diaoyouyun.com/bee</a> 从下图可以看出<br><img src="/assets/preimg/Web-Applications-Technologies/cookie-2.png" alt="Cookies_http://diaoyouyun.com"></p>
+<p>访问<a href="http://www.diaoyouyun.com/bee/来查看有哪些cookie" target="_blank" rel="noopener">http://www.diaoyouyun.com/bee/来查看有哪些cookie</a><br><img src="/assets/preimg/Web-Applications-Technologies/cookie-3.png" alt="cookies"></p>
+<p><strong>关于Java Tomcat 服务端Set-Cookie: 可以得出以下结论：</strong></p>
+<ol>
+<li>不显示地设置domain，浏览器接受去当年请求的domain，但是前面不加点（.）。即：如果当前请求domain是example.com,那么这个cookie就不能被<a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 或者其他***.example.com访问到.</li>
+<li>显示设置domain，只有设置正确的情况，cookie才会被浏览器接受</li>
+</ol>
+<h3 id="测试二"><a href="#测试二" class="headerlink" title="测试二"></a>测试二</h3><blockquote>
+<p>测试前清空相关站点的cookie</p>
+</blockquote>
+<p>通过请求：<a href="http://www.diaoyouyun.com/bee/cookietest" target="_blank" rel="noopener">http://www.diaoyouyun.com/bee/cookietest</a> 来设置cookie<br><img src="/assets/preimg/Web-Applications-Technologies/cookie-4.png" alt="Request"><br>访问<a href="http://www.diaoyouyun.com/bee/" target="_blank" rel="noopener">http://www.diaoyouyun.com/bee/</a><br><img src="/assets/preimg/Web-Applications-Technologies/cookie-5.png" alt="cookies"><br>发现还是只有cookie-1和cookie4， 但是其实<strong>cookie2 也被浏览器接受了，只是cookie2 设置的path是/bee/collect 所以基于当前访问路径（<a href="http://www.diaoyouyun.com/bee/）chrome的开放工具中无法查看到cookie2。通过查看浏览器上所有站点cookie内容，可以在www.diaoyouyun.com" target="_blank" rel="noopener">http://www.diaoyouyun.com/bee/）chrome的开放工具中无法查看到cookie2。通过查看浏览器上所有站点cookie内容，可以在www.diaoyouyun.com</a> 中找到cookie2。 （</strong>反思：**测试一的 cookie2 是否真的未被接受？）</p>
+<p>访问<a href="http://diaoyouyun.com/bee/" target="_blank" rel="noopener">http://diaoyouyun.com/bee/</a> 查看cookie发现只有cookie-1。（cookie4是子域名下的） </p>
+<h3 id="测试三-cookie2-在测试一是否真的未设置成功"><a href="#测试三-cookie2-在测试一是否真的未设置成功" class="headerlink" title="测试三  cookie2 在测试一是否真的未设置成功"></a>测试三  cookie2 在测试一是否真的未设置成功</h3><p>cookie2 是path导致的无法查看到? 将path修改后再次走一遍测试一<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cookie2.setPath(&quot;/&quot;);</span><br></pre></td></tr></table></figure></p>
+<p><img src="/assets/preimg/Web-Applications-Technologies/cookie-6.png" alt="cookie-path"><br>经过验证，cookies2未设置成功</p>
+<h3 id="测试四-跨域请求无法设置cookie"><a href="#测试四-跨域请求无法设置cookie" class="headerlink" title="测试四 跨域请求无法设置cookie"></a>测试四 跨域请求无法设置cookie</h3><p>以下请求是无法设置cookie的</p>
+<p><img src="/assets/preimg/Web-Applications-Technologies/cookie-7.png" alt="cookie-cross-domain"><br>上面的请求cookie1 2 3 4 都无法设置成功。<br>如果在浏览器直接访问<a href="http://api/diaoyouyun.com/bee/cookietest" target="_blank" rel="noopener">http://api/diaoyouyun.com/bee/cookietest</a> cookie1 和cookie4 可以添加成功</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>子域名请求可以设置父域名下cookie。即：<a href="http://www.diaoyouyun.com的请求可以设置cookie" target="_blank" rel="noopener">www.diaoyouyun.com的请求可以设置cookie</a> （domain=diaoyouyun.com，所有diaoyouyun.com及其子域名下site都能查看）</li>
+<li>父级域名的请求<strong>不能设置</strong>子域名的cookie。 即：<a href="http://diaoyouyun.com/*" target="_blank" rel="noopener">http://diaoyouyun.com/*</a>* 的请求无法设置cookie(domain=<a href="http://www.diaoyouyun.com)。" target="_blank" rel="noopener">www.diaoyouyun.com)。</a> 简化记忆可以理解为，有子肯定存在父，反过来就不成立了。</li>
+<li>跨域的请求是无法成功设置cookie的。</li>
+</ol>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-21
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/image-lazy-loading/" rel="prev" title="页面图片懒加载机制">
+                                  
+                                      页面图片懒加载机制
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/google-analytics-notes/" rel="prev" title="Google Analytics 知识点汇总">
+                                    
+                                        Google Analytics 知识点汇总
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/Oauth2-Spring-Boot/">利用Spring Boot Oauth2 来熟悉oauth2 之 - Authorization Code Grant</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/image-lazy-loading/">页面图片懒加载机制</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/google-analytics-notes/">Google Analytics 知识点汇总</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/development-resources/">资源收集</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: 'Http Cookie 探索',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tomcat-Java-Web-App通过服务端来设置浏览器cookie"><span class="toc-text">Tomcat Java Web App通过服务端来设置浏览器cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试一"><span class="toc-text">测试一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试二"><span class="toc-text">测试二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试三-cookie2-在测试一是否真的未设置成功"><span class="toc-text">测试三  cookie2 在测试一是否真的未设置成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#测试四-跨域请求无法设置cookie"><span class="toc-text">测试四 跨域请求无法设置cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

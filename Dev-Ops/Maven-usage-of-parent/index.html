@@ -62,26 +62,8 @@
   							</li>
         			
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
-    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="/">
-    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-  								</a>
-  							</li>
-        			
-    						<li>
     							<a class="nav flat-box" href="/archives/">
     								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/about/">
-    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
   								</a>
   							</li>
         			
@@ -128,26 +110,8 @@
                   </li>
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
-											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
 										<a class="nav  flat-box" href="/archives/">
 											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/about/">
-											<i class="fas fa-user fa-fw"></i>&nbsp;关于
 										</a>
                   </li>
               
@@ -167,7 +131,7 @@
         
         <time class="time">
             <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-            2018-12-11
+            2018-12-21
         </time>
         
           <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
@@ -187,9 +151,9 @@
 <h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><p>eclipse</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/dubbo/dubbo-spring-boot-project" target="_blank" rel="noopener">https://github.com/dubbo/dubbo-spring-boot-project</a><br><a href="http://blog.csdn.net/yaerfeng/article/details/26448417" target="_blank" rel="noopener">http://blog.csdn.net/yaerfeng/article/details/26448417</a><br><a href="http://blog.csdn.net/isea533/article/details/73744497" target="_blank" rel="noopener">http://blog.csdn.net/isea533/article/details/73744497</a></p>
 <h2 id="maven-国内镜像"><a href="#maven-国内镜像" class="headerlink" title="maven 国内镜像"></a>maven 国内镜像</h2><p>如果不翻墙，下载maven的依赖相当慢，可以添加阿里云的镜像， 速度相当快。<br>修改conf文件夹下的settings.xml文件，添加如下镜像配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirrors&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;alimaven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;aliyun maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;        </span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="创建父maven工程"><a href="#创建父maven工程" class="headerlink" title="创建父maven工程"></a>创建父maven工程</h3><h4 id="创建普通的maven工程，参考如下截图"><a href="#创建普通的maven工程，参考如下截图" class="headerlink" title="创建普通的maven工程，参考如下截图"></a>创建普通的maven工程，参考如下截图</h4><p><img src="http://tech.jiu-shu.com/Dev-Ops/maven-create-parent.png" alt="maven-create-parent"></p>
-<h4 id="填写参数"><a href="#填写参数" class="headerlink" title="填写参数"></a>填写参数</h4><p><img src="http://tech.jiu-shu.com/Dev-Ops/maven-create-parent-1.png" alt="maven-create-parent-1"></p>
-<h4 id="删除无用文件夹"><a href="#删除无用文件夹" class="headerlink" title="删除无用文件夹"></a>删除无用文件夹</h4><p><img src="http://tech.jiu-shu.com/Dev-Ops/maven-create-parent-2.png" alt="maven-create-parent-2"></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="创建父maven工程"><a href="#创建父maven工程" class="headerlink" title="创建父maven工程"></a>创建父maven工程</h3><h4 id="创建普通的maven工程，参考如下截图"><a href="#创建普通的maven工程，参考如下截图" class="headerlink" title="创建普通的maven工程，参考如下截图"></a>创建普通的maven工程，参考如下截图</h4><p><img src="/assets/preimg/Dev-Ops/maven-create-parent.png" alt="maven-create-parent"></p>
+<h4 id="填写参数"><a href="#填写参数" class="headerlink" title="填写参数"></a>填写参数</h4><p><img src="/assets/preimg/Dev-Ops/maven-create-parent-1.png" alt="maven-create-parent-1"></p>
+<h4 id="删除无用文件夹"><a href="#删除无用文件夹" class="headerlink" title="删除无用文件夹"></a>删除无用文件夹</h4><p><img src="/assets/preimg/Dev-Ops/maven-create-parent-2.png" alt="maven-create-parent-2"></p>
 <h4 id="修改pom-xml"><a href="#修改pom-xml" class="headerlink" title="修改pom.xml"></a>修改pom.xml</h4><ol>
 <li>packaging 从jar改成pom <code>&lt;packaging&gt;pom&lt;/packaging&gt;</code></li>
 <li>添加spring-boot-starter-parent，添加dependency management。（maven的配置解释参考：<a href="http://www.blogjava.net/hellxoul/archive/2013/05/16/399345.html）" target="_blank" rel="noopener">http://www.blogjava.net/hellxoul/archive/2013/05/16/399345.html）</a><br>修改后配置如下：</li>
@@ -201,7 +165,7 @@
 <li>pom.xml 添加 <code>&lt;packaging&gt;jar&lt;/packaging&gt;</code><h3 id="方式二：创建子maven子工程-（Spring-Boot，-dubbo-服务实现）"><a href="#方式二：创建子maven子工程-（Spring-Boot，-dubbo-服务实现）" class="headerlink" title="方式二：创建子maven子工程 （Spring Boot， dubbo 服务实现）"></a>方式二：创建子maven子工程 （Spring Boot， dubbo 服务实现）</h3>从<a href="https://start.spring.io/" target="_blank" rel="noopener">https://start.spring.io/</a> 创建, 添加依赖，JPA， Validation, Mysql 及其他依赖项（不选Spring Cloud 相关）。下载后解压至父maven工程，修改pom.xml 中的parent使其匹配父工程。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;parent&gt;</span><br><span class="line">	&lt;groupId&gt;com.dubboot&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;dubboot-example&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;0.0.1-SNAPSHOT&lt;/version&gt;</span><br><span class="line">&lt;/parent&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="http://tech.jiu-shu.com/Dev-Ops/spring-io-initiator.png" alt="Spring Initiator"></p>
+<p><img src="/assets/preimg/Dev-Ops/spring-io-initiator.png" alt="Spring Initiator"></p>
 <p>在父工程中添加module：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;modules&gt;</span><br><span class="line">	&lt;module&gt;dubboot-jpa&lt;/module&gt;</span><br><span class="line">&lt;/modules&gt;</span><br></pre></td></tr></table></figure>
 <p>然后可以顺利将子工程导入eclipse。</p>
@@ -209,9 +173,9 @@
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-11
+                本文最后更新于：2018-12-21
             </time>
             
         </section>
@@ -359,7 +323,7 @@
         <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
     </header>
     <div class="content pure">
-      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+      感谢留下评论和指出错误的朋友!
     </div>
   </section>
 
@@ -378,15 +342,6 @@
     
     
         
-    <section class="m_widget tagcloud">
-        <header class="header pure">
-            <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;标签</div>
-        </header>
-        <div class="content pure">
-            <a href="/tags/Mongo/" style="font-size: 14px; color: #999">Mongo</a> <a href="/tags/Mysql/" style="font-size: 24px; color: #555">Mysql</a> <a href="/tags/数据库/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/运维/" style="font-size: 14px; color: #999">运维</a>
-        </div>
-    </section>
-
 
     
     
@@ -425,15 +380,6 @@
     </header>
     <div class="content pure">
         <ul class="entry" id="links">
-            
-                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
-                    <div class="name">
-                        
-                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
-                        
-                        &nbsp;&nbsp;xaoxuu&#39;s blog
-                    </div>
-                </a></li>
             
         </ul>
     </div>
@@ -535,9 +481,7 @@
 
 
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>
-    AV.initialize("HnFN3camhSX52IMir3lqT3hM-gzGzoHsz", "vJsgB1TGKlmniiQsWp51HJaJ"); 
-  </script>
+  <script>AV.initialize("", "");</script>
   <script>
   function showTime(Counter) {
     var query = new AV.Query(Counter);

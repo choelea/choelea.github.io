@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>Spring Boot 1.4 对Unit Test有更好的支持 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Spring-Boot-And-Spring-Cloud/Spring-Boot-Unit-Test" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">Spring Boot 1.4 对Unit Test有更好的支持</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>Spring Boot 1.4 对Unit Test有更好的支持。</strong><br>以下代码主要覆盖：</p>
+<ol>
+<li>mock authentication 来测试带权限的接口</li>
+<li>使用jsonPath来做unit test 的 expectation</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import static org.hamcrest.Matchers.*;</span><br><span class="line">import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;</span><br><span class="line">import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;</span><br><span class="line">import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;</span><br><span class="line">import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;</span><br><span class="line">import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;</span><br><span class="line"></span><br><span class="line">import java.util.ArrayList;</span><br><span class="line">import java.util.HashSet;</span><br><span class="line">import java.util.List;</span><br><span class="line">import java.util.Set;</span><br><span class="line"></span><br><span class="line">import org.junit.Before;</span><br><span class="line">import org.junit.Test;</span><br><span class="line">import org.junit.runner.RunWith;</span><br><span class="line">import org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line">import org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line">import org.springframework.http.MediaType;</span><br><span class="line">import org.springframework.test.context.ActiveProfiles;</span><br><span class="line">import org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line">import org.springframework.test.web.servlet.MockMvc;</span><br><span class="line">import org.springframework.test.web.servlet.setup.MockMvcBuilders;</span><br><span class="line">import org.springframework.transaction.annotation.Transactional;</span><br><span class="line">import org.springframework.web.context.WebApplicationContext;</span><br><span class="line"></span><br><span class="line">import com.hanover.security.entity.Group;</span><br><span class="line">import com.hanover.security.entity.Permission;</span><br><span class="line">import com.hanover.security.entity.Role;</span><br><span class="line">import com.hanover.security.form.InListPojo;</span><br><span class="line">import com.hanover.security.service.PermissionService;</span><br><span class="line">import com.hanover.security.service.RoleService;</span><br><span class="line">import com.hanover.utils.JsonUtils;</span><br><span class="line">/**</span><br><span class="line"> * add group test</span><br><span class="line"> * @author Joe</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">@ActiveProfiles(&quot;test&quot;) </span><br><span class="line">public class GroupRolesIntegrationTest extends AbstractTest&#123;</span><br><span class="line">	</span><br><span class="line">	@Autowired</span><br><span class="line">	private WebApplicationContext context;</span><br><span class="line"></span><br><span class="line">	private MockMvc mvc;</span><br><span class="line">	</span><br><span class="line">	@Autowired</span><br><span class="line">	private PermissionService permissionService;</span><br><span class="line">	</span><br><span class="line">	@Autowired</span><br><span class="line">	private RoleService roleService;</span><br><span class="line">	</span><br><span class="line">	private Role productOperatorRole;</span><br><span class="line">	private Role productAdminRole;</span><br><span class="line">	</span><br><span class="line">	@Before</span><br><span class="line">	public void setup() &#123;</span><br><span class="line">		mvc = MockMvcBuilders</span><br><span class="line">				.webAppContextSetup(context)</span><br><span class="line">				.apply(springSecurity()) </span><br><span class="line">				.build();</span><br><span class="line">		prepareBaseData();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * Step1: createGroup</span><br><span class="line">	 * Step2: select roles for group</span><br><span class="line">	 * Step3: update group roles</span><br><span class="line">	 * @throws Exception </span><br><span class="line">	 */</span><br><span class="line">	@Test</span><br><span class="line">	@Transactional</span><br><span class="line">	public void integrationTestCase() throws Exception&#123;</span><br><span class="line">		Group group = createGroup(&quot;productsuper&quot;,&quot;Product Super group&quot;,&quot;Group for Product Super manager.&quot;);</span><br><span class="line">		InListPojo&lt;String&gt; rolesList  = prepareInPojoForUpdate();</span><br><span class="line">		updateGroupRoles(group.getId(), rolesList);</span><br><span class="line">		getGroupRoles(group.getId());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * Prepare a list of role codes.</span><br><span class="line">	 * @return</span><br><span class="line">	 */</span><br><span class="line">	private InListPojo&lt;String&gt; prepareInPojoForUpdate()&#123;</span><br><span class="line">		List&lt;String&gt; roles = new ArrayList&lt;String&gt;();</span><br><span class="line">		roles.add(productOperatorRole.getCode());</span><br><span class="line">		roles.add(productAdminRole.getCode());</span><br><span class="line">		</span><br><span class="line">		InListPojo&lt;String&gt; rolesList = new InListPojo&lt;&gt;();</span><br><span class="line">		rolesList.setList(roles);</span><br><span class="line">		return rolesList;</span><br><span class="line">	&#125;</span><br><span class="line">	/**</span><br><span class="line">	 * Prepare accessObject, operation, permission roles. </span><br><span class="line">	 * Create 4 roles</span><br><span class="line">	 */</span><br><span class="line">	private void prepareBaseData()&#123;</span><br><span class="line">		Permission productR = permissionService.createPermission(&quot;PRODUCT&quot;, &quot;Product&quot;, &quot;R&quot;, &quot;Read&quot;,&quot;Product Read&quot;);</span><br><span class="line">		Permission productU = permissionService.createPermission(&quot;PRODUCT&quot;, &quot;Product&quot;, &quot;U&quot;, &quot;Update&quot;,&quot;Product Update&quot;);		</span><br><span class="line">		Permission productApprove = permissionService.createPermission(&quot;PRODUCT&quot;, &quot;Product&quot;, &quot;P&quot;, &quot;Approve&quot;,&quot;Product Update&quot;);</span><br><span class="line">		</span><br><span class="line">		Permission srmR = permissionService.createPermission(&quot;supplier&quot;, &quot;supplier&quot;, &quot;R&quot;, &quot;Read&quot;,&quot;Supplier Read&quot;);</span><br><span class="line">		Permission srmU = permissionService.createPermission(&quot;supplier&quot;, &quot;supplier&quot;, &quot;U&quot;, &quot;Update&quot;,&quot;Supplier Update&quot;);		</span><br><span class="line">		Permission srmApprove = permissionService.createPermission(&quot;supplier&quot;, &quot;supplier&quot;, &quot;P&quot;, &quot;Approve&quot;,&quot;Supplier Update&quot;);</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; permissionsProductOperator = new HashSet&lt;String&gt;();</span><br><span class="line">		permissionsProductOperator.add(productU.getCode());</span><br><span class="line">		permissionsProductOperator.add(productR.getCode());		</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; permissionsProductAdmin = new HashSet&lt;String&gt;();</span><br><span class="line">		permissionsProductAdmin.addAll(permissionsProductOperator);</span><br><span class="line">		permissionsProductAdmin.add(productApprove.getCode());</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; permissionSupplierOperator = new HashSet&lt;String&gt;();</span><br><span class="line">		permissionSupplierOperator.add(srmR.getCode());</span><br><span class="line">		permissionSupplierOperator.add(srmU.getCode());</span><br><span class="line">		</span><br><span class="line">		Set&lt;String&gt; permissionSupplierApprover = new HashSet&lt;String&gt;();</span><br><span class="line">		permissionSupplierApprover.add(srmApprove.getCode());</span><br><span class="line">		permissionSupplierApprover.addAll(permissionSupplierApprover);</span><br><span class="line">		</span><br><span class="line">		productOperatorRole = roleService.addOrUpdateRole(&quot;plm_operator&quot;, &quot;PLM Operator&quot;, permissionsProductOperator);</span><br><span class="line">		productAdminRole = roleService.addOrUpdateRole(&quot;plm_approver&quot;, &quot;PLM Approver&quot;, permissionsProductAdmin);</span><br><span class="line">		</span><br><span class="line">		roleService.addOrUpdateRole(&quot;srm_operator&quot;, &quot;SRM Operator&quot;, permissionSupplierOperator);</span><br><span class="line">		roleService.addOrUpdateRole(&quot;srm_approver&quot;, &quot;SRM Approver&quot;, permissionSupplierApprover);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	/**</span><br><span class="line">	 * Update groupRoles</span><br><span class="line">	 * @param groupId</span><br><span class="line">	 * @throws Exception</span><br><span class="line">	 */</span><br><span class="line">    private void updateGroupRoles(Long groupId,InListPojo&lt;String&gt; rolesList) throws Exception&#123;		</span><br><span class="line">		this.mvc.perform(put(&quot;/groups/&quot;+groupId+&quot;/roles&quot;)</span><br><span class="line">				.content(JsonUtils.convertModelToJson(rolesList))</span><br><span class="line">				.contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">				.with(csrf()).with(user(createUserDetail(&quot;joe&quot;, &quot;asdff&quot;, &quot;joe.lea@gmail.com&quot;, &quot;11111112222333&quot;, &quot;PLM,SRM&quot;))).accept(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">				.andExpect(content().json(&quot;&#123;\&quot;success\&quot;:true&#125;&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    /**</span><br><span class="line">     * Get groupRoles</span><br><span class="line">     * @param groupId</span><br><span class="line">     * @throws Exception</span><br><span class="line">     */</span><br><span class="line">	private void getGroupRoles(Long groupId) throws Exception&#123;</span><br><span class="line">		this.mvc.perform(get(&quot;/groups/&quot;+groupId+&quot;/roles&quot;)</span><br><span class="line">				.contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">				.with(csrf()).with(user(createUserDetail(&quot;joe&quot;, &quot;asdff&quot;, &quot;joe.lea@gmail.com&quot;, &quot;11111112222333&quot;, &quot;PLM,SRM&quot;))).accept(MediaType.APPLICATION_JSON_UTF8))</span><br><span class="line">				.andExpect(jsonPath(&quot;$.success&quot;,is(true)))</span><br><span class="line">				.andExpect(jsonPath(&quot;$.data.groupRoles&quot;,arrayContaining(&quot;plm_operator&quot;)))</span><br><span class="line">				.andExpect(jsonPath(&quot;$.data.groupRoles.length()&quot;,is(2)))</span><br><span class="line">				.andExpect(jsonPath(&quot;$.data.allRoles.length()&quot;,is(4) ));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-03-05T09:03:32+08:00" content="2018-03-05">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-03-05
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Spring-Boot-And-Spring-Cloud/Spring-JPA-Auditing/" rel="prev" title="Spring JPA Data Auditing">
+                                  
+                                      Spring JPA Data Auditing
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Spring-Boot-And-Spring-Cloud/Spring-Boot-Tutorial-Security/" rel="prev" title="Spring Security  从单体到微服务的演进 - 单体web">
+                                    
+                                        Spring Security  从单体到微服务的演进 - 单体web
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/spring-mappng-rules/">Spring 路径匹配规则</a></li>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/Spring-JPA-Auditing/">Spring JPA Data Auditing</a></li>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/Spring-Boot-Tutorial-Security/">Spring Security  从单体到微服务的演进 - 单体web</a></li>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/Spring-Boot-Tutorial-4-Static/">Spring Boot 开发web 应用 - 04 静态资源</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: 'Spring Boot 1.4 对Unit Test有更好的支持',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

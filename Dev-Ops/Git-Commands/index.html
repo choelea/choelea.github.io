@@ -62,26 +62,8 @@
   							</li>
         			
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
-    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="/">
-    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-  								</a>
-  							</li>
-        			
-    						<li>
     							<a class="nav flat-box" href="/archives/">
     								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/about/">
-    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
   								</a>
   							</li>
         			
@@ -128,26 +110,8 @@
                   </li>
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
-											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
 										<a class="nav  flat-box" href="/archives/">
 											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/about/">
-											<i class="fas fa-user fa-fw"></i>&nbsp;关于
 										</a>
                   </li>
               
@@ -167,7 +131,7 @@
         
         <time class="time">
             <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-            2018-12-11
+            2018-12-21
         </time>
         
           <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
@@ -210,10 +174,10 @@
 <p>git add -u // git 2.0 以前的版本  stage删除的change<br>git add file-name // git 2.0 后也可以通过这个命令达到上面的命令的效果<br>git commit -m ‘commit message’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 移动文件</span><br></pre></td></tr></table></figure></p>
 <p>git mv index.html web/  // 移动index.html 到web文件夹内。 命令完成后直接进入staging 状态<br>git commit -m ‘move index.html into web folder’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">### ignore 文件</span><br><span class="line">编辑 .gitignore 文件</span><br><span class="line"></span><br><span class="line">## SSH 命令</span><br><span class="line">windows cmd并没有自带ssh命令，我们可以通过git bash命令窗来运行这些命令。</span><br><span class="line">假定在当前用户的目录下：</span><br></pre></td></tr></table></figure></p>
 <p>cd .ssh<br>ssh-keygen -t rsa -C “your email” // 生成SSH Key， 将id_rsa.pub公钥配置到github/bitbucket 等服务器上<br>ssh -T <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a> // 验证SSH 配置成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Git Remote 相关命令</span><br><span class="line">关联一个远程的Repo。 （针对前两种初始化方式，一般情况用不上）</span><br></pre></td></tr></table></figure></p>
-<p>git remote add remote-name remote-repository-location // 示例: git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:choelea/keycloak-demo.git<br>git push -u remote-name branch-name // 示例: git push -u origin master;  The -u parameter is needed the first time you push a branch to the remote.<br>git remote -v // list the names of all the remote repositories<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关联远程repo之前需要先在git服务器上创建对应的repo，如果采用的是github，在创建repository后，会有如下的提示：</span><br><span class="line">![Git-Push-Remote](http://tech.jiu-shu.com/Dev-Ops/git-push-remove.png)</span><br></pre></td></tr></table></figure></p>
+<p>git remote add remote-name remote-repository-location // 示例: git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:choelea/keycloak-demo.git<br>git push -u remote-name branch-name // 示例: git push -u origin master;  The -u parameter is needed the first time you push a branch to the remote.<br>git remote -v // list the names of all the remote repositories<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">关联远程repo之前需要先在git服务器上创建对应的repo，如果采用的是github，在创建repository后，会有如下的提示：</span><br><span class="line">![Git-Push-Remote](/assets/preimg/Dev-Ops/git-push-remove.png)</span><br></pre></td></tr></table></figure></p>
 <p>git pull origin master // 下载当前分支远程修改；每次push前都应该先pull<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Git Rebase</span><br><span class="line">关于rebase和merge的区别，建议参考：[Merging vs Rebasing](https://www.atlassian.com/git/tutorials/merging-vs-rebasing)</span><br><span class="line">&gt; 一定要看看 &apos;The Golden Rule of Rebasing&apos;这部分.</span><br><span class="line">rebase 和 merge都是应该发生在分支之间的事情，当然在同一个分支上有时也需要。（可能不是最佳实践，git的开发流程一般建议创建单独的feature分支来完成不同的story，避免出现多人在同一个分支上直接commit）</span><br><span class="line">直接在当前分支做rebase</span><br></pre></td></tr></table></figure></p>
 <p>git fetch // 这一步必须<br>git rebase // 将未push的commits 放至remote所有commits之上<br>// 修复冲突 如果有冲突必须进行修复，完成后，注意提示。一般需要git add 命令来stage下 ，接着git rebase –continue 至到没有任何冲突<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Squash</span><br><span class="line">通过Interactive Rebasing来完成当前分支的commits的squash</span><br></pre></td></tr></table></figure></p>
-<p>git rebase -i // 列出所有未push的commit，注意是倒序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">根据提示编辑来达到squash的作用。</span><br><span class="line">![git-rebase](http://tech.jiu-shu.com/Dev-Ops/git-rebase.png)</span><br><span class="line">将第二个commit（435d22b）修改为:`pick 435d22b ...` 即将这个commit压缩至上面的commit，并放弃当前的commit message。</span><br><span class="line">&gt; 有些公司会很强调squash。 git估计本地多次提交防止丢失，所以git的commit有可能会很多；而svn的commit就意味着修改可以被其他用户拉取到， 所以svn的每一次commit都要保证系统可以运行，svn的commit会偏少。svn的代码更新时间取决于文件多少和大小；git的代码拉取时间取决于commit的多少。所以。。。是每次提交尽量合理依然很重要，squash/Ineractive Rebasing 很实用。</span><br><span class="line"></span><br><span class="line">## Changing remote URL</span><br><span class="line">repo换了名字，或者之前是https clone下来的，现在想换成ssh；这些情况都面临着修改远程的URL。</span><br></pre></td></tr></table></figure></p>
+<p>git rebase -i // 列出所有未push的commit，注意是倒序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">根据提示编辑来达到squash的作用。</span><br><span class="line">![git-rebase](/assets/preimg/Dev-Ops/git-rebase.png)</span><br><span class="line">将第二个commit（435d22b）修改为:`pick 435d22b ...` 即将这个commit压缩至上面的commit，并放弃当前的commit message。</span><br><span class="line">&gt; 有些公司会很强调squash。 git估计本地多次提交防止丢失，所以git的commit有可能会很多；而svn的commit就意味着修改可以被其他用户拉取到， 所以svn的每一次commit都要保证系统可以运行，svn的commit会偏少。svn的代码更新时间取决于文件多少和大小；git的代码拉取时间取决于commit的多少。所以。。。是每次提交尽量合理依然很重要，squash/Ineractive Rebasing 很实用。</span><br><span class="line"></span><br><span class="line">## Changing remote URL</span><br><span class="line">repo换了名字，或者之前是https clone下来的，现在想换成ssh；这些情况都面临着修改远程的URL。</span><br></pre></td></tr></table></figure></p>
 <p>git remote -v // 查看当前的地址<br>git remote set-url origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:choelea/tech-docs.git<br><code>`</code></p>
 <blockquote>
 <p>https的URL一般来说push代码是需要用户明和密码；而ssh的不需要。</p>
@@ -222,9 +186,9 @@
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-11
+                本文最后更新于：2018-12-21
             </time>
             
         </section>
@@ -236,9 +200,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
                             <h4>
-                                <a href="/Dev-Ops/Centos-Common-Commands/" rel="prev" title="Centos 常用命令">
+                                <a href="/Dev-Ops/Java-IDE-Useful-Skills/" rel="prev" title="Java 开发工具使用技巧收集">
                                   
-                                      Centos 常用命令
+                                      Java 开发工具使用技巧收集
                                   
                                 </a>
                             </h4>
@@ -251,18 +215,12 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Database-Technologies/Mysql-Administration/" rel="prev" title="Mysql 运维相关脚本收集">
+                                <a href="/Dev-Ops/Centos-Common-Commands/" rel="prev" title="Centos 常用命令">
                                     
-                                        Mysql 运维相关脚本收集
+                                        Centos 常用命令
                                     
                                 </a>
                             </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <i class="fas fa-tags fa-fw" aria-hidden="true"></i>
-                                    <a class="tag" href="/tags/Mysql/">Mysql</a>, <a class="tag" href="/tags/运维/">运维</a>, <a class="tag" href="/tags/数据库/">数据库</a>
-                                </h6>
                             
                         </span>
                     </section>
@@ -288,13 +246,13 @@
         <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
         <ul>
             
+                <li><a href="https://choelea.github.io/Dev-Ops/Maven-Private-Repository-Server/">利用Nexus搭建Maven私服</a></li>
+            
                 <li><a href="https://choelea.github.io/Dev-Ops/Java-IDE-Useful-Skills/">Java 开发工具使用技巧收集</a></li>
             
                 <li><a href="https://choelea.github.io/Dev-Ops/Centos-Common-Commands/">Centos 常用命令</a></li>
             
                 <li><a href="https://choelea.github.io/Database-Technologies/Mysql-Administration/">Mysql 运维相关脚本收集</a></li>
-            
-                <li><a href="https://choelea.github.io/Database-Technologies/mongodb-command/">MongoDB 命令 常用语句</a></li>
             
         </ul>
     </div>
@@ -378,7 +336,7 @@
         <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
     </header>
     <div class="content pure">
-      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+      感谢留下评论和指出错误的朋友!
     </div>
   </section>
 
@@ -397,15 +355,6 @@
     
     
         
-    <section class="m_widget tagcloud">
-        <header class="header pure">
-            <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;标签</div>
-        </header>
-        <div class="content pure">
-            <a href="/tags/Mongo/" style="font-size: 14px; color: #999">Mongo</a> <a href="/tags/Mysql/" style="font-size: 24px; color: #555">Mysql</a> <a href="/tags/数据库/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/运维/" style="font-size: 14px; color: #999">运维</a>
-        </div>
-    </section>
-
 
     
     
@@ -444,15 +393,6 @@
     </header>
     <div class="content pure">
         <ul class="entry" id="links">
-            
-                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
-                    <div class="name">
-                        
-                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
-                        
-                        &nbsp;&nbsp;xaoxuu&#39;s blog
-                    </div>
-                </a></li>
             
         </ul>
     </div>
@@ -554,9 +494,7 @@
 
 
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>
-    AV.initialize("HnFN3camhSX52IMir3lqT3hM-gzGzoHsz", "vJsgB1TGKlmniiQsWp51HJaJ"); 
-  </script>
+  <script>AV.initialize("", "");</script>
   <script>
   function showTime(Counter) {
     var query = new AV.Query(Counter);

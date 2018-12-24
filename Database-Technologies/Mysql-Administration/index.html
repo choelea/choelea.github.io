@@ -62,26 +62,8 @@
   							</li>
         			
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
-    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="/">
-    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-  								</a>
-  							</li>
-        			
-    						<li>
     							<a class="nav flat-box" href="/archives/">
     								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/about/">
-    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
   								</a>
   							</li>
         			
@@ -128,26 +110,8 @@
                   </li>
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
-											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
 										<a class="nav  flat-box" href="/archives/">
 											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/about/">
-											<i class="fas fa-user fa-fw"></i>&nbsp;关于
 										</a>
                   </li>
               
@@ -167,7 +131,7 @@
         
         <time class="time">
             <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-            2018-12-11
+            2018-12-21
         </time>
         
           <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
@@ -205,7 +169,7 @@
 </ol>
 <h2 id="验证环境"><a href="#验证环境" class="headerlink" title="验证环境"></a>验证环境</h2><p>Linux 系统：Centos 7</p>
 <h2 id="安装Mysql-Client"><a href="#安装Mysql-Client" class="headerlink" title="安装Mysql Client"></a>安装Mysql Client</h2><p>参考：<a href="https://dev.mysql.com/doc/refman/5.7/en/linux-installation-rpm.html" target="_blank" rel="noopener">Installing MySQL on Linux Using RPM Packages from Oracle</a></p>
-<h2 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/sh</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#############################################################################################################################################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This script is used to retrieve data from mysql and output it into txt file. Also it will generate md5 file <span class="built_in">which</span> can be used to verify the integrity.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Script will make folder named <span class="string">"YYYYMMDD"</span>, also the file name will follow the pattern A/I&#123;tableName&#125;YYYYMMDD&#123;6 sequence number&#125; such as I0100320170303000001</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#############################################################################################################################################</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#############Global Configuration begins ####################</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Root folder <span class="built_in">where</span> the data will be stored</span></span><br><span class="line">BEE_ROOT_GLOBAL=/data/b2bbuyerdata</span><br><span class="line">MYSQL_HOST=192.168.1.90</span><br><span class="line">MYSQL_PORT=3306</span><br><span class="line">MYSQL_USERNAME=username</span><br><span class="line">MYSQL_PASSWD=password</span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment">#############Global Configuration ends ####################</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> exportAndMD5Sum querySql tableName. Output the query result into tableNameYYYYMMDD000001.txt and tableNameYYYYMMDD000001.md5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> .md5 file is used to verify data integrity. </span></span><br><span class="line">exportAndMD5Sum()</span><br><span class="line">&#123;</span><br><span class="line">	if [ "$#" != 2 ];then</span><br><span class="line">		echo  "Usage: exportAndMD5Sum querySql tableName";</span><br><span class="line">		exit;</span><br><span class="line">	fi</span><br><span class="line"><span class="meta">	#</span><span class="bash"> Starting <span class="built_in">export</span> data using mysql <span class="built_in">command</span></span></span><br><span class="line">	SQL=$1;</span><br><span class="line">	tableName=$2;</span><br><span class="line">	TIMESTAMP=`date +%Y%m%d`</span><br><span class="line">	BEE_ROOT=$&#123;BEE_ROOT_GLOBAL&#125;/$&#123;TIMESTAMP&#125;</span><br><span class="line">	</span><br><span class="line">	_tmpFile=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.tmp;</span><br><span class="line">	destFile=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.AVL;</span><br><span class="line">	destMD5File=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.CHK;</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span><span class="bash"> Create Folder</span></span><br><span class="line">	[ ! -d "$BEE_ROOT" ] &amp;&amp;  mkdir "$BEE_ROOT"</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span><span class="bash"> Mysql <span class="built_in">command</span> to output data into file</span></span><br><span class="line">	`mysql -h $&#123;MYSQL_HOST&#125; -p$&#123;MYSQL_PORT&#125; -u $&#123;MYSQL_USERNAME&#125; --password=$&#123;MYSQL_PASSWD&#125; -e "$&#123;SQL&#125;" &gt; "$&#123;_tmpFile&#125;"`</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span><span class="bash"> If not empty(has records) change the file name, otherwise remove it.</span></span><br><span class="line">	if [ -f "$_tmpFile" ] &amp;&amp; [ -s "$_tmpFile" ]</span><br><span class="line">		then</span><br><span class="line">			mv $&#123;_tmpFile&#125; $&#123;destFile&#125;</span><br><span class="line"><span class="meta">			#</span><span class="bash">`md5sum <span class="variable">$&#123;destFile&#125;</span> &gt; <span class="variable">$&#123;destMD5File&#125;</span>`</span></span><br><span class="line">			md5=($(md5sum $&#123;destFile&#125;))</span><br><span class="line">			echo $md5 &gt; $&#123;destMD5File&#125;</span><br><span class="line">		else</span><br><span class="line">			rm $&#123;_tmpFile&#125;	</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line">if [ "$1" = "I" ]; then</span><br><span class="line">	echo "Starting export all data from mysql ............."</span><br><span class="line">	exportAndMD5Sum "SELECT username,country,source,city,email,first_name,last_name,province,status,CAST(is_reveive_email AS UNSIGNED) AS is_reveive_email,created_stamp,last_updated_stamp FROM b2bbuyer.user" "I01001"</span><br><span class="line">	exportAndMD5Sum "select u.username,a.address,a.city,a.company_name,a.country,a.first_name,CAST(a.is_default AS UNSIGNED) AS is_default ,a.last_name,a.province,a.tel_country_code,a.tel_ext,a.tel_no,a.zip_code,a.created_stamp,a.last_updated_stamp from b2bbuyer.user u inner join b2bbuyer.user_delivery_address a where a.user_id=u.id" "I01002"</span><br><span class="line">	exportAndMD5Sum "select u.username,c.email,c.address,c.city,c.company_name,c.contact,c.country,c.fax_country_code,c.fax_ext,c.fax_tel_no,c.main_products,c.province,c.register_no,c.tax_no,c.tel_country_code,c.tel_ext,c.tel_no,c.website from b2bbuyer.user u inner join b2bbuyer.user_company c where c.user_id=u.id" "I01003"</span><br><span class="line">else</span><br><span class="line">	echo "Starting export yesterday's data from mysql ............."</span><br><span class="line">	exportAndMD5Sum "SELECT username,country,source,city,email,first_name,last_name,province,status,CAST(is_reveive_email AS UNSIGNED) AS is_reveive_email,created_stamp,last_updated_stamp FROM b2bbuyer.user where last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01001"</span><br><span class="line">	exportAndMD5Sum "select u.username,a.address,a.city,a.company_name,a.country,a.first_name,CAST(a.is_default AS UNSIGNED) AS is_default ,a.last_name,a.province,a.tel_country_code,a.tel_ext,a.tel_no,a.zip_code,a.created_stamp,a.last_updated_stamp from b2bbuyer.user u inner join b2bbuyer.user_delivery_address a where a.user_id=u.id and a.last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and a.last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01002"</span><br><span class="line">	exportAndMD5Sum "select u.username,c.email,c.address,c.city,c.company_name,c.contact,c.country,c.fax_country_code,c.fax_ext,c.fax_tel_no,c.main_products,c.province,c.register_no,c.tax_no,c.tel_country_code,c.tel_ext,c.tel_no,c.website from b2bbuyer.user u inner join b2bbuyer.user_company c where c.user_id=u.id and c.last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and c.last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01003"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h2 id="Shell-脚本"><a href="#Shell-脚本" class="headerlink" title="Shell 脚本"></a>Shell 脚本</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line"><span class="meta">#</span>#############################################################################################################################################</span><br><span class="line"><span class="meta">#</span> This script is used to retrieve data from mysql and output it into txt file. Also it will generate md5 file which can be used to verify the integrity.</span><br><span class="line"><span class="meta">#</span> Script will make folder named "YYYYMMDD", also the file name will follow the pattern A/I&#123;tableName&#125;YYYYMMDD&#123;6 sequence number&#125; such as I0100320170303000001</span><br><span class="line"><span class="meta">#</span>#############################################################################################################################################</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>#############Global Configuration begins ####################</span><br><span class="line"><span class="meta">#</span> Root folder where the data will be stored</span><br><span class="line">BEE_ROOT_GLOBAL=/data/b2bbuyerdata</span><br><span class="line">MYSQL_HOST=192.168.1.90</span><br><span class="line">MYSQL_PORT=3306</span><br><span class="line">MYSQL_USERNAME=username</span><br><span class="line">MYSQL_PASSWD=password</span><br><span class="line"><span class="meta">#</span>#############Global Configuration ends ####################</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> exportAndMD5Sum querySql tableName. Output the query result into tableNameYYYYMMDD000001.txt and tableNameYYYYMMDD000001.md5</span><br><span class="line"><span class="meta">#</span> .md5 file is used to verify data integrity. </span><br><span class="line">exportAndMD5Sum()</span><br><span class="line">&#123;</span><br><span class="line">	if [ "$#" != 2 ];then</span><br><span class="line">		echo  "Usage: exportAndMD5Sum querySql tableName";</span><br><span class="line">		exit;</span><br><span class="line">	fi</span><br><span class="line"><span class="meta">	#</span> Starting export data using mysql command</span><br><span class="line">	SQL=$1;</span><br><span class="line">	tableName=$2;</span><br><span class="line">	TIMESTAMP=`date +%Y%m%d`</span><br><span class="line">	BEE_ROOT=$&#123;BEE_ROOT_GLOBAL&#125;/$&#123;TIMESTAMP&#125;</span><br><span class="line">	</span><br><span class="line">	_tmpFile=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.tmp;</span><br><span class="line">	destFile=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.AVL;</span><br><span class="line">	destMD5File=$&#123;BEE_ROOT&#125;/$&#123;tableName&#125;$&#123;TIMESTAMP&#125;000001.CHK;</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span> Create Folder</span><br><span class="line">	[ ! -d "$BEE_ROOT" ] &amp;&amp;  mkdir "$BEE_ROOT"</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span> Mysql command to output data into file</span><br><span class="line">	`mysql -h $&#123;MYSQL_HOST&#125; -p$&#123;MYSQL_PORT&#125; -u $&#123;MYSQL_USERNAME&#125; --password=$&#123;MYSQL_PASSWD&#125; -e "$&#123;SQL&#125;" &gt; "$&#123;_tmpFile&#125;"`</span><br><span class="line">	</span><br><span class="line"><span class="meta">	#</span> If not empty(has records) change the file name, otherwise remove it.</span><br><span class="line">	if [ -f "$_tmpFile" ] &amp;&amp; [ -s "$_tmpFile" ]</span><br><span class="line">		then</span><br><span class="line">			mv $&#123;_tmpFile&#125; $&#123;destFile&#125;</span><br><span class="line"><span class="meta">			#</span>`md5sum $&#123;destFile&#125; &gt; $&#123;destMD5File&#125;`</span><br><span class="line">			md5=($(md5sum $&#123;destFile&#125;))</span><br><span class="line">			echo $md5 &gt; $&#123;destMD5File&#125;</span><br><span class="line">		else</span><br><span class="line">			rm $&#123;_tmpFile&#125;	</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line">if [ "$1" = "I" ]; then</span><br><span class="line">	echo "Starting export all data from mysql ............."</span><br><span class="line">	exportAndMD5Sum "SELECT username,country,source,city,email,first_name,last_name,province,status,CAST(is_reveive_email AS UNSIGNED) AS is_reveive_email,created_stamp,last_updated_stamp FROM b2bbuyer.user" "I01001"</span><br><span class="line">	exportAndMD5Sum "select u.username,a.address,a.city,a.company_name,a.country,a.first_name,CAST(a.is_default AS UNSIGNED) AS is_default ,a.last_name,a.province,a.tel_country_code,a.tel_ext,a.tel_no,a.zip_code,a.created_stamp,a.last_updated_stamp from b2bbuyer.user u inner join b2bbuyer.user_delivery_address a where a.user_id=u.id" "I01002"</span><br><span class="line">	exportAndMD5Sum "select u.username,c.email,c.address,c.city,c.company_name,c.contact,c.country,c.fax_country_code,c.fax_ext,c.fax_tel_no,c.main_products,c.province,c.register_no,c.tax_no,c.tel_country_code,c.tel_ext,c.tel_no,c.website from b2bbuyer.user u inner join b2bbuyer.user_company c where c.user_id=u.id" "I01003"</span><br><span class="line">else</span><br><span class="line">	echo "Starting export yesterday's data from mysql ............."</span><br><span class="line">	exportAndMD5Sum "SELECT username,country,source,city,email,first_name,last_name,province,status,CAST(is_reveive_email AS UNSIGNED) AS is_reveive_email,created_stamp,last_updated_stamp FROM b2bbuyer.user where last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01001"</span><br><span class="line">	exportAndMD5Sum "select u.username,a.address,a.city,a.company_name,a.country,a.first_name,CAST(a.is_default AS UNSIGNED) AS is_default ,a.last_name,a.province,a.tel_country_code,a.tel_ext,a.tel_no,a.zip_code,a.created_stamp,a.last_updated_stamp from b2bbuyer.user u inner join b2bbuyer.user_delivery_address a where a.user_id=u.id and a.last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and a.last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01002"</span><br><span class="line">	exportAndMD5Sum "select u.username,c.email,c.address,c.city,c.company_name,c.contact,c.country,c.fax_country_code,c.fax_ext,c.fax_tel_no,c.main_products,c.province,c.register_no,c.tax_no,c.tel_country_code,c.tel_ext,c.tel_no,c.website from b2bbuyer.user u inner join b2bbuyer.user_company c where c.user_id=u.id and c.last_updated_stamp &lt; (UNIX_TIMESTAMP(CURDATE())*1000) and c.last_updated_stamp &gt; ((UNIX_TIMESTAMP(CURDATE())-60*60*24)*1000)" "A01003"</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 <h2 id="添加cron-job"><a href="#添加cron-job" class="headerlink" title="添加cron job"></a>添加cron job</h2><p>参考cronjob <code>crontab -l</code><br>编辑cronjob <code>crontab -e</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * /data/scripts/mysql-job.sh A</span><br><span class="line">20 1 * * 0 /data/scripts/mysql-job.sh I</span><br></pre></td></tr></table></figure>
 <p>两个cron job 分别：</p>
@@ -227,16 +191,10 @@
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T22:14:40+08:00" content="2018-12-11">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:17:17+08:00" content="2018-12-21">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-11
+                本文最后更新于：2018-12-21
             </time>
-            
-                
-                <div class="tags">
-                    <i class="fas fa-tags fa-fw" aria-hidden="true"></i>
-                    <a class="tag" href="/tags/Mysql/">Mysql</a>, <a class="tag" href="/tags/运维/">运维</a>, <a class="tag" href="/tags/数据库/">数据库</a>
-                </div>
             
         </section>
 
@@ -247,9 +205,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
                             <h4>
-                                <a href="/Dev-Ops/Git-Commands/" rel="prev" title="Git 常用命令">
+                                <a href="/Dev-Ops/Centos-Common-Commands/" rel="prev" title="Centos 常用命令">
                                   
-                                      Git 常用命令
+                                      Centos 常用命令
                                   
                                 </a>
                             </h4>
@@ -262,18 +220,12 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Database-Technologies/mongodb-command/" rel="prev" title="MongoDB 命令 常用语句">
+                                <a href="/Database-Technologies/Mongodb-vs-Mysql-basic/" rel="prev" title="Mongodb 和 Mysql 的性能测试">
                                     
-                                        MongoDB 命令 常用语句
+                                        Mongodb 和 Mysql 的性能测试
                                     
                                 </a>
                             </h4>
-                            
-                                
-                                <h6 class="tags">
-                                    <i class="fas fa-tags fa-fw" aria-hidden="true"></i>
-                                    <a class="tag" href="/tags/Mysql/">Mysql</a>, <a class="tag" href="/tags/Mongo/">Mongo</a>
-                                </h6>
                             
                         </span>
                     </section>
@@ -299,13 +251,13 @@
         <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
         <ul>
             
-                <li><a href="https://choelea.github.io/Dev-Ops/Centos-Common-Commands/">Centos 常用命令</a></li>
-            
                 <li><a href="https://choelea.github.io/Dev-Ops/Git-Commands/">Git 常用命令</a></li>
             
-                <li><a href="https://choelea.github.io/Database-Technologies/mongodb-command/">MongoDB 命令 常用语句</a></li>
+                <li><a href="https://choelea.github.io/Dev-Ops/Centos-Common-Commands/">Centos 常用命令</a></li>
             
                 <li><a href="https://choelea.github.io/Database-Technologies/Mongodb-vs-Mysql-basic/">Mongodb 和 Mysql 的性能测试</a></li>
+            
+                <li><a href="https://choelea.github.io/Database-Technologies/mongodb-command/">MongoDB 命令 常用语句</a></li>
             
         </ul>
     </div>
@@ -389,7 +341,7 @@
         <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
     </header>
     <div class="content pure">
-      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+      感谢留下评论和指出错误的朋友!
     </div>
   </section>
 
@@ -408,15 +360,6 @@
     
     
         
-    <section class="m_widget tagcloud">
-        <header class="header pure">
-            <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;标签</div>
-        </header>
-        <div class="content pure">
-            <a href="/tags/Mongo/" style="font-size: 14px; color: #999">Mongo</a> <a href="/tags/Mysql/" style="font-size: 24px; color: #555">Mysql</a> <a href="/tags/数据库/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/运维/" style="font-size: 14px; color: #999">运维</a>
-        </div>
-    </section>
-
 
     
     
@@ -455,15 +398,6 @@
     </header>
     <div class="content pure">
         <ul class="entry" id="links">
-            
-                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
-                    <div class="name">
-                        
-                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
-                        
-                        &nbsp;&nbsp;xaoxuu&#39;s blog
-                    </div>
-                </a></li>
             
         </ul>
     </div>
@@ -565,9 +499,7 @@
 
 
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>
-    AV.initialize("HnFN3camhSX52IMir3lqT3hM-gzGzoHsz", "vJsgB1TGKlmniiQsWp51HJaJ"); 
-  </script>
+  <script>AV.initialize("", "");</script>
   <script>
   function showTime(Counter) {
     var query = new AV.Query(Counter);

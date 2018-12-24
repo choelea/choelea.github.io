@@ -62,26 +62,8 @@
   							</li>
         			
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/projects/">
-    								<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="/">
-    								<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-  								</a>
-  							</li>
-        			
-    						<li>
     							<a class="nav flat-box" href="/archives/">
     								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-  								</a>
-  							</li>
-        			
-    						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/about/">
-    								<i class="fas fa-user fa-fw"></i>&nbsp;关于
   								</a>
   							</li>
         			
@@ -128,26 +110,8 @@
                   </li>
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/projects/">
-											<i class="fas fa-flask fa-fw"></i>&nbsp;项目
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="/">
-											<i class="fas fa-rss fa-fw"></i>&nbsp;博客
-										</a>
-                  </li>
-              
-                  <li>
 										<a class="nav  flat-box" href="/archives/">
 											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
-										</a>
-                  </li>
-              
-                  <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/about/">
-											<i class="fas fa-user fa-fw"></i>&nbsp;关于
 										</a>
                   </li>
               
@@ -167,7 +131,7 @@
         
         <time class="time">
             <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-            2018-12-11
+            2018-12-21
         </time>
         
           <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
@@ -194,8 +158,8 @@
 <blockquote>
 <p>更多更实用的netstat命令参考：<a href="http://www.binarytides.com/linux-netstat-command-examples/" target="_blank" rel="noopener">Linux netstat 命令示例</a></p>
 </blockquote>
-<h3 id="查看centos-版本"><a href="#查看centos-版本" class="headerlink" title="查看centos 版本"></a>查看centos 版本</h3><p>cat /etc/centos-release<br><strong>设置环境变量</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export KAFKA_HOME=/home/osboxes/kafka_2.10-0.10.0.1</span><br><span class="line">echo $KAFKA_HOME</span><br></pre></td></tr></table></figure>
+<h3 id="查看centos-版本"><a href="#查看centos-版本" class="headerlink" title="查看centos 版本"></a>查看centos 版本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/centos-release</span><br></pre></td></tr></table></figure>
+<h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export KAFKA_HOME=/home/osboxes/kafka_2.10-0.10.0.1</span><br><span class="line">echo $KAFKA_HOME</span><br></pre></td></tr></table></figure>
 <h3 id="磁盘空间"><a href="#磁盘空间" class="headerlink" title="磁盘空间"></a>磁盘空间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free</span><br></pre></td></tr></table></figure>
 <h3 id="查看目录所占空间大小"><a href="#查看目录所占空间大小" class="headerlink" title="查看目录所占空间大小"></a>查看目录所占空间大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -smh *</span><br></pre></td></tr></table></figure>
@@ -218,7 +182,7 @@
 <blockquote>
 <p>gzip -r  dictName 命令会压缩整个文件夹dictName 里面的所有文件，每个文件被压缩成一个单独的*.gz 文件</p>
 </blockquote>
-<h3 id="tar-命令"><a href="#tar-命令" class="headerlink" title="tar 命令"></a>tar 命令</h3><p>gzip / bzip2 是用来压缩单个文件， tar是用来归档。 所以tar结合gzip/bzip2 可以方便的进行整个文件夹的压缩及归档。<br>压缩整个文件夹<code>tar -zcvf outputFileName folderToCompress</code><br><a href="https://www.tecmint.com/18-tar-command-examples-in-linux/" target="_blank" rel="noopener">Examples</a></p>
+<h3 id="tar-命令"><a href="#tar-命令" class="headerlink" title="tar 命令"></a>tar 命令</h3><p>gzip / bzip2 是用来压缩单个文件， tar是用来归档。 所以tar结合gzip/bzip2 可以方便的进行整个文件夹的压缩及归档。<br>压缩整个文件夹<code>tar -zcvf outputFileName folderToCompress</code><br><a href="https://www.tecmint.com/18-tar-command-examples-in-linux/" target="_blank" rel="noopener">Examples</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ar -xvf videos-14-09-12.tar.bz2 // 解压</span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p>bzip2 </p>
 </blockquote>
@@ -226,20 +190,18 @@
 <h4 id="sftp-下载文件夹"><a href="#sftp-下载文件夹" class="headerlink" title="sftp 下载文件夹"></a>sftp 下载文件夹</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">get -r  folder  /home/joe/</span><br></pre></td></tr></table></figure>
 <h4 id="sftp-上传文件"><a href="#sftp-上传文件" class="headerlink" title="sftp 上传文件"></a>sftp 上传文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">put  /name1.html  /name2/</span><br></pre></td></tr></table></figure>
 <h3 id="crontab-命令"><a href="#crontab-命令" class="headerlink" title="crontab 命令"></a>crontab 命令</h3><p>创建执行任务， 添加cron job<br>参考cronjob <code>crontab -l</code><br>编辑cronjob <code>crontab -e</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * /data/scripts/mysql-job.sh A</span><br><span class="line">20 1 * * 0 /data/scripts/mysql-job.sh I</span><br></pre></td></tr></table></figure>
-<p>两个cron job 分别：</p>
-<ol>
-<li>每天1点执行</li>
-<li>每周日1点20 执行</li>
-</ol>
-<p>参考：crontab 时间可以参考： <a href="https://www.cnblogs.com/intval/p/5763929.html" target="_blank" rel="noopener">https://www.cnblogs.com/intval/p/5763929.html</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * /data/scripts/mysql-job.sh A  // 每天1点执行</span><br><span class="line">20 1 * * 0 /data/scripts/mysql-job.sh I  // 每周日1点20 执行</span><br></pre></td></tr></table></figure>
+<p>Cron Job的日志位置： /var/log/cron<br>参考：crontab 时间可以参考： <a href="https://www.cnblogs.com/intval/p/5763929.html" target="_blank" rel="noopener">https://www.cnblogs.com/intval/p/5763929.html</a></p>
+<blockquote>
+<p>注意cron的时间有可能和date命令的时间不一致。<code>tail -f /var/log/cron</code> 这个命令可以查看cron的时间。 当执行<code>crontab -e</code>的时候<code>/var/log/cron</code>会有记录。</p>
+</blockquote>
 
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-11T17:52:56+08:00" content="2018-12-11">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:17:29+08:00" content="2018-12-21">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-11
+                本文最后更新于：2018-12-21
             </time>
             
         </section>
@@ -251,9 +213,9 @@
                         <span class="art-item-left">
                             <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
                             <h4>
-                                <a href="/Dev-Ops/Java-IDE-Useful-Skills/" rel="prev" title="Java 开发工具使用技巧收集">
+                                <a href="/Dev-Ops/Git-Commands/" rel="prev" title="Git 常用命令">
                                   
-                                      Java 开发工具使用技巧收集
+                                      Git 常用命令
                                   
                                 </a>
                             </h4>
@@ -266,9 +228,9 @@
                         <span class="art-item-right" aria-hidden="true">
                             <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
                             <h4>
-                                <a href="/Dev-Ops/Git-Commands/" rel="prev" title="Git 常用命令">
+                                <a href="/Database-Technologies/Mysql-Administration/" rel="prev" title="Mysql 运维相关脚本收集">
                                     
-                                        Git 常用命令
+                                        Mysql 运维相关脚本收集
                                     
                                 </a>
                             </h4>
@@ -297,13 +259,13 @@
         <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
         <ul>
             
-                <li><a href="https://choelea.github.io/Dev-Ops/Maven-Private-Repository-Server/">利用Nexus搭建Maven私服</a></li>
-            
                 <li><a href="https://choelea.github.io/Dev-Ops/Java-IDE-Useful-Skills/">Java 开发工具使用技巧收集</a></li>
             
                 <li><a href="https://choelea.github.io/Dev-Ops/Git-Commands/">Git 常用命令</a></li>
             
                 <li><a href="https://choelea.github.io/Database-Technologies/Mysql-Administration/">Mysql 运维相关脚本收集</a></li>
+            
+                <li><a href="https://choelea.github.io/Database-Technologies/Mongodb-vs-Mysql-basic/">Mongodb 和 Mysql 的性能测试</a></li>
             
         </ul>
     </div>
@@ -387,7 +349,7 @@
         <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
     </header>
     <div class="content pure">
-      本站使用 <b><a href="https://choelea.github.io/wiki/material-x/">Material X</a></b> 作为主题，喜欢这个主题的朋友可以阅读文档进行安装哦。
+      感谢留下评论和指出错误的朋友!
     </div>
   </section>
 
@@ -406,15 +368,6 @@
     
     
         
-    <section class="m_widget tagcloud">
-        <header class="header pure">
-            <div><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;标签</div>
-        </header>
-        <div class="content pure">
-            <a href="/tags/Mongo/" style="font-size: 14px; color: #999">Mongo</a> <a href="/tags/Mysql/" style="font-size: 24px; color: #555">Mysql</a> <a href="/tags/数据库/" style="font-size: 14px; color: #999">数据库</a> <a href="/tags/运维/" style="font-size: 14px; color: #999">运维</a>
-        </div>
-    </section>
-
 
     
     
@@ -425,7 +378,7 @@
             <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
         </header>
         <div class="content pure">
-            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#软件安装"><span class="toc-text">软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yum-安装"><span class="toc-text">yum 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpm-包安装"><span class="toc-text">rpm  包安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看安装程序路径"><span class="toc-text">查看安装程序路径</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开放端口"><span class="toc-text">开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat-使用"><span class="toc-text">netstat 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看某个服务是否在运行"><span class="toc-text">查看某个服务是否在运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看centos-版本"><span class="toc-text">查看centos 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘空间"><span class="toc-text">磁盘空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看目录所占空间大小"><span class="toc-text">查看目录所占空间大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计文件夹下面的文件数量"><span class="toc-text">统计文件夹下面的文件数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-搜索文件内容"><span class="toc-text">grep 搜索文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝整个文件夹"><span class="toc-text">拷贝整个文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和组"><span class="toc-text">用户和组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件权限"><span class="toc-text">文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-owner"><span class="toc-text">修改文件[夹]owner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-访问权限"><span class="toc-text">修改文件[夹]访问权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS-命令"><span class="toc-text">PS 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看java进程-ps-ef-grep-java"><span class="toc-text">查看java进程 ps -ef|grep java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产看进程的详细信息-ps-auxwe-grep-subscribe"><span class="toc-text">产看进程的详细信息 ps -auxwe | grep subscribe</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行快捷键"><span class="toc-text">命令行快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip-gunzip"><span class="toc-text">gzip / gunzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-命令"><span class="toc-text">tar 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sftp-命令"><span class="toc-text">sftp 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp登录"><span class="toc-text">sftp登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-下载文件夹"><span class="toc-text">sftp 下载文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-上传文件"><span class="toc-text">sftp 上传文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab-命令"><span class="toc-text">crontab 命令</span></a></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#软件安装"><span class="toc-text">软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#yum-安装"><span class="toc-text">yum 安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rpm-包安装"><span class="toc-text">rpm  包安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查看安装程序路径"><span class="toc-text">查看安装程序路径</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开放端口"><span class="toc-text">开放端口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netstat-使用"><span class="toc-text">netstat 使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看某个服务是否在运行"><span class="toc-text">查看某个服务是否在运行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看centos-版本"><span class="toc-text">查看centos 版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置环境变量"><span class="toc-text">设置环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#磁盘空间"><span class="toc-text">磁盘空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看目录所占空间大小"><span class="toc-text">查看目录所占空间大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计文件夹下面的文件数量"><span class="toc-text">统计文件夹下面的文件数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep-搜索文件内容"><span class="toc-text">grep 搜索文件内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝整个文件夹"><span class="toc-text">拷贝整个文件夹</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户和组"><span class="toc-text">用户和组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件权限"><span class="toc-text">文件权限</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-owner"><span class="toc-text">修改文件[夹]owner</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改文件-夹-访问权限"><span class="toc-text">修改文件[夹]访问权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PS-命令"><span class="toc-text">PS 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#查看java进程-ps-ef-grep-java"><span class="toc-text">查看java进程 ps -ef|grep java</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#产看进程的详细信息-ps-auxwe-grep-subscribe"><span class="toc-text">产看进程的详细信息 ps -auxwe | grep subscribe</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行快捷键"><span class="toc-text">命令行快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gzip-gunzip"><span class="toc-text">gzip / gunzip</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tar-命令"><span class="toc-text">tar 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sftp-命令"><span class="toc-text">sftp 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp登录"><span class="toc-text">sftp登录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-下载文件夹"><span class="toc-text">sftp 下载文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#sftp-上传文件"><span class="toc-text">sftp 上传文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#crontab-命令"><span class="toc-text">crontab 命令</span></a></li></ol>
         </div>
     </section>
 
@@ -453,15 +406,6 @@
     </header>
     <div class="content pure">
         <ul class="entry" id="links">
-            
-                <li><a class="flat-box" title="https://choelea.github.io/blog" target="_blank" rel="external nofollow noopener noreferrer" href="https://choelea.github.io/blog">
-                    <div class="name">
-                        
-                            <img src="https://choelea.github.io/assets/img/avatar.jpg">
-                        
-                        &nbsp;&nbsp;xaoxuu&#39;s blog
-                    </div>
-                </a></li>
             
         </ul>
     </div>
@@ -563,9 +507,7 @@
 
 
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>
-    AV.initialize("HnFN3camhSX52IMir3lqT3hM-gzGzoHsz", "vJsgB1TGKlmniiQsWp51HJaJ"); 
-  </script>
+  <script>AV.initialize("", "");</script>
   <script>
   function showTime(Counter) {
     var query = new AV.Query(Counter);

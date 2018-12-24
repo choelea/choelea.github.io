@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>搞定跨域资源共享 (CORS) | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Web-Applications-Technologies/cors-solution" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">搞定跨域资源共享 (CORS)</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>通过多个Nodejs Web App一步步来深入了解CORS每个细节，每步都通过实际的验证；最终给出Nodejs Express Web和Java Spring Web的代码示例。</p>
+<p>测试CORS代码库： <a href="git@github.com:choelea/cors-tester.git">git@github.com:choelea/cors-tester.git</a></p>
+<p><img src="/assets/preimg/Web-Applications-Technologies/cors-font-request.png" alt="cors"></p>
+<h2 id="什么是CORS"><a href="#什么是CORS" class="headerlink" title="什么是CORS"></a>什么是CORS</h2><p>解释这个概念之前先要认识下什么是 域(Origin)。</p>
+<h3 id="什么是Origin"><a href="#什么是Origin" class="headerlink" title="什么是Origin"></a>什么是Origin</h3><p>域是 协议(http/https)+域名+端口的组合。 <code>An origin is defined as a combination of URI scheme, host name, and port number.</code>摘自：<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Same-origin_policy</a></p>
+<blockquote>
+<p>这个是一个标准，但不是所有浏览器的所有版本都严格执行了，特别是关于端口这点。</p>
+</blockquote>
+<p>通过下面的表可以更直观的认识到什么才是’<strong>同一个域(同源)</strong>‘。(图标截自维基百科)<br><img src="/assets/preimg/Web-Applications-Technologies/same-origin-table.png" alt="Same Origin Metric"></p>
+<h3 id="CORS-定义"><a href="#CORS-定义" class="headerlink" title="CORS 定义"></a>CORS 定义</h3><p>Cross-origin resource sharing (CORS)； 跨域资源共享（CORS）是一种机制，这种机制在允许在网页中请求另一个域<strong>受限制</strong>的资源。<br>摘自维基百科: <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></p>
+<blockquote>
+<p>这里的受限制并不是说这些资源需要登录厚着授权等</p>
+</blockquote>
+<h2 id="哪些资源是默认可以跨域的"><a href="#哪些资源是默认可以跨域的" class="headerlink" title="哪些资源是默认可以跨域的"></a>哪些资源是默认可以跨域的</h2><p>上面定义提到了”受限制”, 也就是说不是所有的跨域资源需要CORS机制。在不做任何设置的的时候，默认图片, css, js 等请求都是可以跨域的。</p>
+<blockquote>
+<p>如果你的css有针对字体的请求，你会发现字体请求<strong>默认</strong>也是受到<strong>同源机制</strong>的限制；包括js 和css对应的map文件的请求都无法跨域访问。</p>
+</blockquote>
+<h4 id="AJAX请求可以吗"><a href="#AJAX请求可以吗" class="headerlink" title="AJAX请求可以吗"></a>AJAX请求可以吗</h4><p>浏览器打开<code>http://corsdisableapi.jiu-shu.com/users</code>可以获取到json结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;name&quot;: &quot;Joe&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;name&quot;: &quot;Mark&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
+<p>但是我们打开页面<code>http://corsweb.jiu-shu.com/public-resources.html</code> (或者任何其他域),在console里面做出如下请求：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;GET&apos;, &apos;http://corsdisableapi.jiu-shu.com/users&apos;); </span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></p>
+<p>你会发现console报出了如下的错误; 很明显请求是收到<strong>同源机制</strong>的限制。<br><img src="/assets/preimg/Web-Applications-Technologies/cors-policy-error.png" alt="cors policy error"></p>
+<p>打开页面<a href="http://corsweb.jiu-shu.com/public-resources.html" target="_blank" rel="noopener">http://corsweb.jiu-shu.com/public-resources.html</a> 通过源代码和开发者工具理解这一节知识。</p>
+<h2 id="开启CORS"><a href="#开启CORS" class="headerlink" title="开启CORS"></a>开启CORS</h2><p>很明显很多时候我们必须有个策略来<strong>突破/放宽</strong>同源政策的限制； 比如Web页面<a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 需要请求api.example.com的资源；比如：PC站<a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 和M站m.example.com 需要共同获取/修改api.example.com的资源。</p>
+<blockquote>
+<p>CORS 只是<strong>突破/放宽同源政策</strong>中的一个种, 其他具体可以参考： <a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Same-origin_policy</a></p>
+</blockquote>
+<p>CORS需要浏览器和服务器同时支持。目前，所有浏览器都支持该功能，IE浏览器不能低于IE10。</p>
+<p>整个CORS通信过程，都是浏览器自动完成，不需要用户参与。对于开发者来说，CORS通信与同源的AJAX通信没有差别，代码完全一样。浏览器一旦发现AJAX请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，但用户不会有感觉。</p>
+<p>因此，实现CORS通信的关键是服务器。只要服务器实现了CORS的标准，就可以跨源通信。</p>
+<h3 id="服务端开启CORS"><a href="#服务端开启CORS" class="headerlink" title="服务端开启CORS"></a>服务端开启CORS</h3><p>这里示例代码均采用nodejs express 的web应用，使用<a href="https://www.npmjs.com/package/cors" target="_blank" rel="noopener">cors</a>组件即可轻松实现服务端开启CORS。<br>将之前的corsdisableapi.jiu-shu.com服务复制一份增加CORS的支持，以corsenable.jiu-shu.com这个域来提供；然后访问页面<a href="http://corsweb.jiu-shu.com/request-cors-resources.html" target="_blank" rel="noopener">http://corsweb.jiu-shu.com/request-cors-resources.html</a> 对比前面一个页面 <a href="http://corsweb.jiu-shu.com/public-resources.html" target="_blank" rel="noopener">http://corsweb.jiu-shu.com/public-resources.html</a> 可以发现之前浏览器console抛出的cors相关的错误全部消失了。</p>
+<h2 id="浏览器的两种CORS请求"><a href="#浏览器的两种CORS请求" class="headerlink" title="浏览器的两种CORS请求"></a>浏览器的两种CORS请求</h2><p>大部分有些了解CORS都听过OPTION请求; 也叫”预检”请求（preflight）。但是前面的页面<a href="http://corsweb.jiu-shu.com/request-cors-resources.html" target="_blank" rel="noopener">http://corsweb.jiu-shu.com/request-cors-resources.html</a> 中的跨域的请求，通过开发者工具查看，在network这个标签中无法找到OPTION的请求。这是因为CORS有两种请求：简单请求和非简单请求；简单请求是不需要<strong>预检</strong>请求的。 但是无论是什么CORS请求，浏览器都会自动加上Origin这个header。</p>
+<h3 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h3><p>一般来说满足下面的有可能是简单请求。</p>
+<ul>
+<li>请求方法是 HEAD/GET/POST</li>
+<li>HTTP的头信息中没有自定义的Header；Content-Type不能是application/json</li>
+</ul>
+<p>简单请求，浏览器只需要发出一个请求就可以拿到想要的结果。</p>
+<blockquote>
+<p>暂时没有完全找到简单请求的完整定于及所有场景，但是一般情况我们不需要考虑，因为你一定需要支持非简单请求的情况。</p>
+</blockquote>
+<h3 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h3><p>非简单请求就需要”预检”请求(preflight); 浏览器根据preflight的结果来决定下一个正式请求<strong>是否可以发</strong>以及<strong>怎么发</strong>。</p>
+<p>访问页面<a href="http://corsweb.jiu-shu.com/request-cors-resources.html" target="_blank" rel="noopener">http://corsweb.jiu-shu.com/request-cors-resources.html</a> 打开console输入下面请求，观察网络请求，可以发现两个请求。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;GET&apos;, &apos;http://corsenableapi.jiu-shu.com/users&apos;); </span><br><span class="line">xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure></p>
+<h2 id="CORS相关字段"><a href="#CORS相关字段" class="headerlink" title="CORS相关字段"></a>CORS相关字段</h2><p>理解上面之后我们需要开始了解头信息中和CORS相关的字段，这些字段都是Access-Control-开头。</p>
+<h3 id="预检请求的相关字段"><a href="#预检请求的相关字段" class="headerlink" title="预检请求的相关字段"></a>预检请求的相关字段</h3><p><strong>Access-Control-Request-Method</strong><br>该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法。</p>
+<p><strong>Access-Control-Request-Headers</strong><br>该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段。</p>
+<h3 id="响应的相关字段"><a href="#响应的相关字段" class="headerlink" title="响应的相关字段"></a>响应的相关字段</h3><p><strong>Access-Control-Allow-Origin</strong><br>该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</p>
+<p><strong>Access-Control-Allow-Methods</strong><br>该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了配合Access-Control-Max-Age来避免多次”预检”请求。</p>
+<p><strong>Access-Control-Allow-Headers</strong><br>如果浏览器请求包括Access-Control-Request-Headers字段，则Access-Control-Allow-Headers字段是必需的。它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段，不限于浏览器在”预检”中请求的字段。</p>
+<p><strong>Access-Control-Allow-Credentials</strong><br>该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。默认情况下，Cookie不包括在CORS请求之中。设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。</p>
+<blockquote>
+<p>这个设置是容易被忽视的，同时也需要前端配合的。一个很容易想到的场景就是Session会话，Session会话往往是以secure的cookie的形式存在，当你的网站有多个子域名，而这些子域名都共享一个会话的时候，你的AJAX的CORS请求就需要带上Cookie。如果前端用的是Jquery，可以参考：<a href="https://www.html5rocks.com/en/tutorials/cors/#toc-cors-from-jquery" target="_blank" rel="noopener">https://www.html5rocks.com/en/tutorials/cors/#toc-cors-from-jquery</a></p>
+</blockquote>
+<blockquote>
+<p>当开启Credentials的时候，为了安全考虑，浏览器要求Access-Control-Allow-Origin 必须制定值不能用<code>*</code>，否则会得到如下的错误</p>
+</blockquote>
+<p><img src="/assets/preimg/Web-Applications-Technologies/credentials-restrict-specific-origin.png" alt="credentials restrict specific origin"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest();</span><br><span class="line">xhr.open(&apos;GET&apos;, &apos;http://corssession.jiu-shu.com/viewhistories&apos;); </span><br><span class="line">xhr.setRequestHeader(&apos;Content-Type&apos;, &apos;application/json&apos;);</span><br><span class="line">xhr.withCredentials = true;</span><br><span class="line">xhr.send();</span><br></pre></td></tr></table></figure>
+<p><strong>Access-Control-Max-Age</strong><br>该字段可选，用来指定本次预检请求的有效期，单位为秒。上面结果中，有效期是20天（1728000秒），即允许缓存该条回应1728000秒（即20天），在此期间，不用发出另一条预检请求。</p>
+<p><strong>Access-Control-Expose-Headers</strong><br>该字段可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</p>
+<h2 id="解决CORS问题的两个步骤"><a href="#解决CORS问题的两个步骤" class="headerlink" title="解决CORS问题的两个步骤"></a>解决CORS问题的两个步骤</h2><ul>
+<li>确定服务端响应字段是否正确</li>
+<li>如果服务端响应字段正确，确定客户端是否正确发送了请求，需要的header是否都带上了，需要的cookie是否带上了</li>
+</ul>
+<h2 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h2><p>介绍了这么多，是时候来点干货 了。。。</p>
+<h3 id="好的CORS需求如下"><a href="#好的CORS需求如下" class="headerlink" title="好的CORS需求如下"></a>好的CORS需求如下</h3><ul>
+<li>只允许制定的域访问 (CORS请求中的Origin如果通过，就原样设置回Access-Control-Allow-Origin)</li>
+<li>CORS请求需要带上Cookie</li>
+<li>减少不必要的预检请求 (Access-Control-Max-Age  需要用)</li>
+</ul>
+<h3 id="Nodejs-Express-Web的代码"><a href="#Nodejs-Express-Web的代码" class="headerlink" title="Nodejs Express Web的代码"></a>Nodejs Express Web的代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const cors = require(&apos;cors&apos;);</span><br><span class="line">...</span><br><span class="line">const corsOptioin = &#123;</span><br><span class="line">  &quot;origin&quot;: /\.jiu-shu\.com$/, // jiu-shu.com 的所有子域名</span><br><span class="line">  &quot;methods&quot;: &quot;GET,HEAD,PUT,PATCH,POST,DELETE&quot;,</span><br><span class="line">  &quot;optionsSuccessStatus&quot;: 204,</span><br><span class="line">	&quot;allowedHeaders&quot;:&quot;X-Csrf-Token, X-Requested-With&quot;, // 给出你允许的所有的Header</span><br><span class="line">  &quot;credentials&quot;:true, // 服务端可以让你带上Cookie，如果没带上就去检查你的前端代码</span><br><span class="line">  &quot;maxAge&quot;:3600  // 一个小时内预检一次就OK啦</span><br><span class="line">&#125;;</span><br><span class="line">app.use(cors(corsOptioin));</span><br></pre></td></tr></table></figure>
+<h3 id="Java-Spring-Web的代码"><a href="#Java-Spring-Web的代码" class="headerlink" title="Java Spring Web的代码"></a>Java Spring Web的代码</h3><p> 非Spring 的也同这个相似。</p>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.regex.Pattern;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.filter.OncePerRequestFilter;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CorsFilter</span> <span class="keyword">extends</span> <span class="title">OncePerRequestFilter</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="meta">@Value</span>(<span class="string">"$&#123;cors.origins.pattern&#125;"</span>)</span><br><span class="line">	<span class="keyword">private</span> String originPattern;  <span class="comment">// (.+\\.)*lichao\\.com</span></span><br><span class="line">	    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doFilterInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;		 </span><br><span class="line">        Pattern hostAllowedPattern = Pattern.compile(originPattern, Pattern.CASE_INSENSITIVE);</span><br><span class="line">    	String origin = request.getHeader(<span class="string">"Origin"</span>);</span><br><span class="line">    	<span class="keyword">if</span>(origin!=<span class="keyword">null</span>) &#123;    		</span><br><span class="line">    		<span class="keyword">if</span> (hostAllowedPattern.matcher(origin).matches()) &#123;</span><br><span class="line">    			response.addHeader(<span class="string">"Access-Control-Allow-Origin"</span>, origin);<span class="comment">// (CORS请求中的Origin如果通过，就原样设置回Access-Control-Allow-Origin)	</span></span><br><span class="line">    			response.addHeader(<span class="string">"Access-Control-Allow-Methods"</span>,<span class="string">"GET, OPTIONS, HEAD, PUT, POST, DELETE"</span>); </span><br><span class="line">    			response.setHeader(<span class="string">"Access-Control-Allow-Credentials"</span>, <span class="string">"true"</span>);</span><br><span class="line">    			response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);</span><br><span class="line">    			<span class="keyword">if</span> (request.getMethod().equals(<span class="string">"OPTIONS"</span>)) &#123;</span><br><span class="line">    				<span class="comment">// response.addHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));</span></span><br><span class="line">						response.addHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"locale, X-Csrf-Token, X-Requested-With"</span>); <span class="comment">// List All</span></span><br><span class="line">    				response.setStatus(HttpServletResponse.SC_ACCEPTED);</span><br><span class="line">    				<span class="keyword">return</span>;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    			<span class="comment">// Throw 403 status OR send default allow</span></span><br><span class="line">    			response.addHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"https://www.jiu-shu.com"</span>);</span><br><span class="line">    		&#125;    		</span><br><span class="line">    	&#125; </span><br><span class="line">    	filterChain.doFilter(request, response);	</span><br><span class="line">	&#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考文章: </p>
+<p><a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Same-origin_policy</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Cross-origin_resource_sharing</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/cors.html</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html</a></p>
+<p><a href="https://blog.csdn.net/guodengh/article/details/73187908?locationNum=7&amp;fps=1" target="_blank" rel="noopener">https://blog.csdn.net/guodengh/article/details/73187908?locationNum=7&amp;fps=1</a></p>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-21
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/development-resources/" rel="prev" title="资源收集">
+                                  
+                                      资源收集
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Web-Applications-Technologies/aws-resize-on-fly/" rel="prev" title="AWS 亚马逊云解决方案 - 动态压缩图片">
+                                    
+                                        AWS 亚马逊云解决方案 - 动态压缩图片
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/google-analytics-notes/">Google Analytics 知识点汇总</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/development-resources/">资源收集</a></li>
+            
+                <li><a href="https://choelea.github.io/Web-Applications-Technologies/aws-resize-on-fly/">AWS 亚马逊云解决方案 - 动态压缩图片</a></li>
+            
+                <li><a href="https://choelea.github.io/Spring-Boot-And-Spring-Cloud/spring-tricky-controller/">Tricky Part Of Spring Controller</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: '搞定跨域资源共享 (CORS)',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是CORS"><span class="toc-text">什么是CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是Origin"><span class="toc-text">什么是Origin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS-定义"><span class="toc-text">CORS 定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#哪些资源是默认可以跨域的"><span class="toc-text">哪些资源是默认可以跨域的</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AJAX请求可以吗"><span class="toc-text">AJAX请求可以吗</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#开启CORS"><span class="toc-text">开启CORS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务端开启CORS"><span class="toc-text">服务端开启CORS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器的两种CORS请求"><span class="toc-text">浏览器的两种CORS请求</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单请求"><span class="toc-text">简单请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非简单请求"><span class="toc-text">非简单请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CORS相关字段"><span class="toc-text">CORS相关字段</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#预检请求的相关字段"><span class="toc-text">预检请求的相关字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应的相关字段"><span class="toc-text">响应的相关字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决CORS问题的两个步骤"><span class="toc-text">解决CORS问题的两个步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最佳实践"><span class="toc-text">最佳实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#好的CORS需求如下"><span class="toc-text">好的CORS需求如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nodejs-Express-Web的代码"><span class="toc-text">Nodejs Express Web的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Spring-Web的代码"><span class="toc-text">Java Spring Web的代码</span></a></li></ol></li>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>

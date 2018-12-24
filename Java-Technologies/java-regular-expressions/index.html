@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>关于Java 正则表达式的介绍 | 逍客 - Stay Happy and Enjoy Life!</title>
+  
+  <meta name="keywords" content="旧书, 生活, 微信, 照片, 户外, 钓鱼, 亲子">
+  
+  <meta name="HandheldFriendly" content="True">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
+  
+  <!-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link href="//cdn.bootcss.com/node-waves/0.7.5/waves.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?3fd67b824da2406da99e2941d5c0d062";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+  
+</head>
+</html>
+<body>
+    <div id="loading-bar-wrapper">
+  <div id="loading-bar" class="pure"></div>
+</div>
+
+    <script>setLoadingBarProgress(20)</script>
+    <header class="l_header pure">
+	<div class="wrapper">
+		<div class="nav-main container container--flex">
+			<a class="logo flat-box" href="/">逍客 - Stay Happy and Enjoy Life!</a>
+				<div class="menu">
+					<ul class="h-list">
+            
+    					
+    						<li>
+    							<a class="nav flat-box" href="https://choelea.github.io/">
+    								<i class="fas fa-home fa-fw"></i>&nbsp;主页
+  								</a>
+  							</li>
+        			
+    						<li>
+    							<a class="nav flat-box" href="/archives/">
+    								<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+  								</a>
+  							</li>
+        			
+        		
+					</ul>
+					<div class="underline"></div>
+				</div>
+
+			
+				<div class="m_search">
+					<form name="searchform" class="form u-search-form">
+						<input type="text" class="input u-search-input" placeholder="Search">
+						<span class="icon"><i class="fas fa-search fa-fw"></i></span>
+					</form>
+				</div>
+			
+			<ul class="switcher h-list">
+				
+					<li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+				
+				<li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+
+		<div class="nav-sub container container--flex">
+			<a class="logo flat-box"></a>
+			<ul class="switcher h-list">
+				<li class="s-comment"><a class="fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-top"><a class="fas fa-arrow-up fa-fw" href="javascript:void(0)"></a></li>
+				<li class="s-toc"><a class="fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+	<aside class="menu-phone">
+		<nav>
+      <ul>
+          
+              
+                  <li>
+										<a class="nav  flat-box" href="https://choelea.github.io/">
+											<i class="fas fa-home fa-fw"></i>&nbsp;主页
+										</a>
+                  </li>
+              
+                  <li>
+										<a class="nav  flat-box" href="/archives/">
+											<i class="fas fa-archive fa-fw"></i>&nbsp;归档
+										</a>
+                  </li>
+              
+       
+      </ul>
+		</nav>
+	</aside>
+
+    <script>setLoadingBarProgress(40);</script>
+    <div class="l_body">
+    <div class='container clearfix'>
+        <div class='l_main'>
+            <article id="post-Java-Technologies/java-regular-expressions" class="post white-box article-type-post" itemscope="" itemprop="blogPost">
+    <section class="meta">
+        
+            <h1 class="title">关于Java 正则表达式的介绍</h1>
+        
+        <time class="time">
+            <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
+            2018-12-21
+        </time>
+        
+          <div class="browse busuanzi"><i class="fas fa-eye fa-fw" aria-hidden="true"></i>
+            <span id="busuanzi_value_page_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span>
+          </div>
+        
+
+        
+
+    </section>
+
+    <section class="article typo">
+
+        <div class="article-entry" itemprop="articleBody">
+            <p>在本文中，我们将讨论Java Regex API以及如何在Java编程语言中使用正则表达式。 在正则表达式的世界中，有许多不同的风格可供选择，例如grep，Perl，Python，PHP，awk等等。 这意味着在一种编程语言中工作的正则表达式可能在另一种编程语言中不起作用。 Java中的正则表达式语法与Perl中的语法最相似。</p>
+<blockquote>
+<p>这篇文章大部分内容只是针对： <a href="https://www.baeldung.com/regular-expressions-java" target="_blank" rel="noopener">https://www.baeldung.com/regular-expressions-java</a> 进行了翻译； Chrome的插件翻译的近乎完美，大部分的翻译都是直接来源于此。</p>
+</blockquote>
+<p>要在Java中使用正则表达式，我们不需要任何特殊设置。 JDK包含一个特殊的包java.util.regex，完全专用于正则表达式操作。我们只需要将它导入我们的代码中。 此外，java.lang.String类还具有内置的正则表达式支持，我们通常在代码中使用它们</p>
+<h2 id="Java-正则表达式包"><a href="#Java-正则表达式包" class="headerlink" title="Java 正则表达式包"></a>Java 正则表达式包</h2><p>java.util.regex包由三个类组成：Pattern，Matcher和PatternSyntaxException： </p>
+<ul>
+<li>Pattern对象是一个已编译的正则表达式。 Pattern类不提供公共构造函数。要创建模式，我们必须首先调用其公共静态编译方法之一，然后返回Pattern对象。这些方法接受正则表达式作为第一个参数。 </li>
+<li>Matcher对象解释模式并对输入String执行匹配操作。它还定义了没有公共构造函数。我们通过在Pattern对象上调用matcher方法来获取Matcher对象。 </li>
+<li>PatternSyntaxException对象是未经检查的异常，表示正则表达式模式中的语法错误。</li>
+</ul>
+<h2 id="简单示例来理解如何应用"><a href="#简单示例来理解如何应用" class="headerlink" title="简单示例来理解如何应用"></a>简单示例来理解如何应用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenSimpleRegexMatches_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;foo&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(&quot;foo&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matcher.find());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们首先通过调用静态编译方法创建一个Pattern对象，并将它传递给我们想要使用的模式。 然后我们创建一个Matcher对象，调用Pattern对象的matcher方法并将它传递给我们要检查匹配的文本。 之后，我们在Matcher对象中调用方法find。 </p>
+<p>find方法不断推进输入文本并为每个匹配返回true，因此我们也可以使用它来查找匹配计数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenSimpleRegexMatchesTwice_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;foo&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(&quot;foofoo&quot;);</span><br><span class="line">    int matches = 0;</span><br><span class="line">    while (matcher.find()) &#123;</span><br><span class="line">        matches++;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于我们将运行更多测试，因此我们可以在名为runTest的方法中抽象查找匹配数的逻辑：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static int runTest(String regex, String text) &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(regex);</span><br><span class="line">    Matcher matcher = pattern.matcher(text);</span><br><span class="line">    int matches = 0;</span><br><span class="line">    while (matcher.find()) &#123;</span><br><span class="line">        matches++;</span><br><span class="line">    &#125;</span><br><span class="line">    return matches;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h2><p>元字符会影响模式的匹配方式，从而为搜索模式添加逻辑。 Java API支持几个元字符，最直接的是匹配任何字符的点“.”：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesWithDotMetach_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;.&quot;, &quot;foo&quot;);</span><br><span class="line">     </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>考虑前面的例子，其中正则表达式foo与文本foo以及foofoo匹配两次。如果我们在正则表达式中使用点元字符，我们在第二种情况下不会得到两个匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRepeatedText_whenMatchesOnceWithDotMetach_thenCorrect() &#123;</span><br><span class="line">    int matches= runTest(&quot;foo.&quot;, &quot;foofoo&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意正则表达式中foo之后的点。匹配器匹配前面有foo的每个文本，因为最后一个点部分表示后面的任何字符。所以在找到第一个foo之后，其余部分被视为任何角色。这就是为什么只有一个匹配。 API支持其他几个元字符<code>&lt;（[{\ ^ - = $！|]}）？* +。&gt;</code>，我们将在本文中进一步研究。</p>
+<h2 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h2><p>浏览官方Pattern类规范，我们将发现支持的正则表达式结构的摘要。在字符类下，我们有大约6个构造。</p>
+<h3 id="OR类"><a href="#OR类" class="headerlink" title="OR类"></a>OR类</h3><p>构造为[abc]。集合中的任何元素都匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenORSet_whenMatchesAny_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[abc]&quot;, &quot;b&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果它们都出现在文本中，则每个都是单独匹配而不考虑顺序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenORSet_whenMatchesAnyAndAll_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[abc]&quot;, &quot;cab&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>它们也可以作为String的一部分进行交替。在下面的示例中，当我们通过将第一个字母与集合中的每个元素交替来创建不同的单词时，它们都匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenORSet_whenMatchesAllCombinations_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[bcr]at&quot;, &quot;bat cat rat&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="NOR-类"><a href="#NOR-类" class="headerlink" title="NOR 类"></a>NOR 类</h3><p>通过添加插入符号<code>^</code>作为第一个元素来取消上面的设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNORSet_whenMatchesNon_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[^abc]&quot;, &quot;g&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Another case:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNORSet_whenMatchesAllExceptElements_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[^bcr]at&quot;, &quot;sat mat eat&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Range-类"><a href="#Range-类" class="headerlink" title="Range 类"></a>Range 类</h3><p>我们可以定义一个类，使用连字符（ - ）指定匹配文本应该落在的范围内，同样，我们也可以否定范围。</p>
+<p>匹配大写的英文字母:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenUpperCaseRange_whenMatchesUpperCase_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;[A-Z]&quot;, &quot;Two Uppercase alphabets 34 overall&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配小写的英文字母:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenLowerCaseRange_whenMatchesLowerCase_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;[a-z]&quot;, &quot;Two Uppercase alphabets 34 overall&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 26);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配大小写的英文字母:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenBothLowerAndUpperCaseRange_</span><br><span class="line">  whenMatchesAllLetters_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;[a-zA-Z]&quot;, &quot;Two Uppercase alphabets 34 overall&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 28);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配给定范围的数字：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNumberRange_whenMatchesAccurately_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;[1-5]&quot;, &quot;Two Uppercase alphabets 34 overall&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配另一个数字范围：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNumberRange_whenMatchesAccurately_</span><br><span class="line">  thenCorrect2()&#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;[30-35]&quot;, &quot;Two Uppercase alphabets 34 overall&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Union-类"><a href="#Union-类" class="headerlink" title="Union 类"></a>Union 类</h3><p>联合字符类是组合两个或多个字符类的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenTwoSets_whenMatchesUnion_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[1-3[7-9]]&quot;, &quot;123456789&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 6);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的测试只匹配9个整数中的6个，因为联合集跳过了3,4和5。</p>
+<h3 id="Intersection-类"><a href="#Intersection-类" class="headerlink" title="Intersection 类"></a>Intersection 类</h3><p>与union类相似，此类是从两个或多个集合之间选择公共元素得到的。要应用交集，我们使用&amp;&amp;：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenTwoSets_whenMatchesIntersection_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[1-6&amp;&amp;[3-9]]&quot;, &quot;123456789&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 4);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们得到4个匹配，因为两个集合的交集只有4个元素。</p>
+<h3 id="Subtraction-Class"><a href="#Subtraction-Class" class="headerlink" title="Subtraction Class"></a>Subtraction Class</h3><p>我们可以使用减法来否定一个或多个字符类，例如匹配一组奇数十进制数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenSetWithSubtraction_whenMatchesAccurately_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;[0-9&amp;&amp;[^2468]]&quot;, &quot;123456789&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 5);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>只有1,3,5,7,9匹配。</p>
+<h2 id="预定义字符类"><a href="#预定义字符类" class="headerlink" title="预定义字符类"></a>预定义字符类</h2><p>Java正则表达式API也接受预定义的字符类。上述某些字符类可以用较短的形式表示，但使代码不太直观。这个正则表达式的Java版本的一个特殊方面是转义字符。 正如我们将看到的，大多数字符将以反斜杠开头，这在Java中具有特殊含义。要由Pattern类编译这些 - 必须转义前导反斜杠，即<code>\ d</code>变为<code>\\ d</code>。 匹配数字，相当于[0-9]：</p>
+<p>匹配数字，相当于[0-9]：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenDigits_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\d&quot;, &quot;123&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>匹配非数字，相当于[^ 0-9]：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNonDigits_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int mathces = runTest(&quot;\\D&quot;, &quot;a6c&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>匹配空白区域：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenWhiteSpace_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\s&quot;, &quot;a c&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>匹配非白色空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNonWhiteSpace_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\S&quot;, &quot;a c&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配单词字符，相当于[a-zA-Z_0-9]：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenWordCharacter_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\w&quot;, &quot;hi!&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匹配非单词字符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenNonWordCharacter_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\W&quot;, &quot;hi!&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h2><p>Java正则表达式API还允许我们使用量词。这使我们能够通过指定要匹配的出现次数来进一步调整匹配的行为。</p>
+<p>为了匹配文本零或一次，我们使用？量词：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenZeroOrOneQuantifier_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\a?&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者，我们可以使用Java正则表达式API支持的大括号语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenZeroOrOneQuantifier_whenMatches_thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\a&#123;0,1&#125;&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此示例介绍了零长度匹配的概念。碰巧的是，如果量词的匹配阈值为零，它总是匹配文本中的所有内容，包括每个输入末尾的空字符串。这意味着即使输入为空，它也将返回一个零长度匹配。 </p>
+<p>这解释了为什么我们在上面的例子中得到3个匹配，尽管有一个长度为2的字符串。第三个匹配是零长度的空字符串。 </p>
+<p>为了匹配文本零或无限次，我们使用<code>*</code>量词，它类似于<code>？</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenZeroOrManyQuantifier_whenMatches_thenCorrect() &#123;</span><br><span class="line">     int matches = runTest(&quot;\\a*&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">     assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同等效果的另外一种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenZeroOrManyQuantifier_whenMatches_thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\a&#123;0,&#125;&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具有差异的量词是+，它具有匹配阈值1.如果根本不发生所需的字符串，则不会匹配，甚至不是零长度字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenOneOrManyQuantifier_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\a+&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>同等效果的另外一种写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenOneOrManyQuantifier_whenMatches_thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\a&#123;1,&#125;&quot;, &quot;hi&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>与Perl和其他语言一样，大括号语法可用于多次匹配给定文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenBraceQuantifier_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;a&#123;3&#125;&quot;, &quot;aaaaaa&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的示例中，我们得到两个匹配项，因为匹配仅在连续出现三次时才会发生。但是，在下一个测试中，我们不会得到匹配，因为文本只连续出现两次：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenBraceQuantifier_whenFailsToMatch_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;a&#123;3&#125;&quot;, &quot;aa&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们在大括号中使用一个范围时，匹配将是贪婪的，从范围的较高端匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenBraceQuantifierWithRange_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;a&#123;2,3&#125;&quot;, &quot;aaaa&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们已经指定了至少两次但不超过三次，所以我们得到一个匹配，而匹配器看到一个aaa和一个无法匹配的孤独aa。</p>
+<p>但是，API允许我们指定一个懒惰或不情愿的方法，以便匹配器可以从范围的下端开始，在这种情况下匹配两次出现为aa和aa：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenBraceQuantifierWithRange_whenMatchesLazily_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;a&#123;2,3&#125;?&quot;, &quot;aaaa&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="捕获组"><a href="#捕获组" class="headerlink" title="捕获组"></a>捕获组</h2><p>API还允许我们通过捕获组将多个字符视为一个单元。 它会将数字附加到捕获组，并允许使用这些数字进行反向引用。 在本节中，我们将看到一些关于如何在Java regex API中使用捕获组的示例。 让我们使用仅当输入文本包含彼此相邻的两个数字时才匹配的捕获组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroup_whenMatches_thenCorrect() &#123;</span><br><span class="line">    int maches = runTest(&quot;(\\d\\d)&quot;, &quot;12&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>附加到上面匹配的数字是1，使用后向引用告诉匹配器我们要匹配文本的匹配部分的另一个出现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroup_whenMatches_thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;(\\d\\d)&quot;, &quot;1212&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于输入有两个单独的匹配，我们可以有一个匹配但传播相同的正则表达式匹配以使用反向引用跨越输入的整个长度：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroup_whenMatchesWithBackReference_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;(\\d\\d)\\1&quot;, &quot;1212&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们必须在没有反向引用的情况下重复正则表达式以获得相同的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroup_whenMatches_thenCorrect3() &#123;</span><br><span class="line">    int matches = runTest(&quot;(\\d\\d)(\\d\\d)&quot;, &quot;1212&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类似地，对于任何其他重复次数，反向引用可以使匹配器将输入视为单个匹配：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroup_whenMatchesWithBackReference_</span><br><span class="line">  thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;(\\d\\d)\\1\\1\\1&quot;, &quot;12121212&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(matches, 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但如果你改变了哪怕最后一位数，那么匹配就会失败：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenCapturingGroupAndWrongInput_whenMatchFailsWithBackReference_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;(\\d\\d)\\1&quot;, &quot;1213&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>重要的是不要忘记转义反斜杠，这在Java语法中至关重要。</p>
+<blockquote>
+<p>捕获组更有价值的地方在于通过Matcher 的 group()方法来后去捕获到的字符串；详情可以参考：  <a href="http://www.runoob.com/w3cnote/java-capture-group.html" target="_blank" rel="noopener">http://www.runoob.com/w3cnote/java-capture-group.html</a></p>
+</blockquote>
+<h2 id="边界匹配"><a href="#边界匹配" class="headerlink" title="边界匹配"></a>边界匹配</h2><p>Java正则表达式API还支持边界匹配。如果我们关心匹配应该在输入文本中的确切位置，那么这就是我们正在寻找的。在前面的例子中，我们关心的是是否找到匹配。 要仅在文本开头所需的正则表达式为真时匹配，我们使用插入符号^。 此测试将成功，因为可以在开头找到文本狗：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesAtBeginning_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;^dog&quot;, &quot;dogs are friendly&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面的将失败：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenTextAndWrongInput_whenMatchFailsAtBeginning_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;^dog&quot;, &quot;are dogs are friendly?&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>要仅在文本末尾所需的正则表达式为真时匹配，我们使用美元字符$。在以下情况中将找到匹配：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenTextAndWrongInput_whenMatchFailsAtEnd_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;dog$&quot;, &quot;is a dog man&apos;s best friend?&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果我们只想在单词边界找到所需的文本时匹配，我们在正则表达式的开头和结尾使用\ b正则表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesAtWordBoundary_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\bdog\\b&quot;, &quot;a dog is friendly&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>空格是一个词边界：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesAtWordBoundary_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\bdog\\b&quot;, &quot;a dog is friendly&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一行开头的空字符串也是一个单词边界：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesAtWordBoundary_thenCorrect2() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\bdog\\b&quot;, &quot;dog is man&apos;s best friend&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这些测试通过，因为String的开头以及一个文本和另一个文本之间的空格标记了单词边界，但是，以下测试显示相反的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenWrongText_whenMatchFailsAtWordBoundary_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\bdog\\b&quot;, &quot;snoop dogg is a rapper&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>连续出现的双字符不标记单词边界，但我们可以通过更改正则表达式的结尾来查找非单词边界：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenText_whenMatchesAtWordAndNonBoundary_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\\bdog\\B&quot;, &quot;snoop dogg is a rapper&quot;);</span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Pattern-Class-Methods"><a href="#Pattern-Class-Methods" class="headerlink" title="Pattern Class Methods"></a>Pattern Class Methods</h2><p>之前，我们只以基本方式创建了Pattern对象。但是，此类具有另一种编译方法，它接受一组标志以及影响模式匹配方式的正则表达式参数。 这些标志只是抽象的整数值。让我们重载测试类中的runTest方法，以便它可以将标志作为第三个参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static int runTest(String regex, String text, int flags) &#123;</span><br><span class="line">    pattern = Pattern.compile(regex, flags);</span><br><span class="line">    matcher = pattern.matcher(text);</span><br><span class="line">    int matches = 0;</span><br><span class="line">    while (matcher.find())&#123;</span><br><span class="line">        matches++;</span><br><span class="line">    &#125;</span><br><span class="line">    return matches;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在本节中，我们将查看不同的受支持标志及其使用方式。</p>
+<h3 id="Pattern-CANON-EQ"><a href="#Pattern-CANON-EQ" class="headerlink" title="Pattern.CANON_EQ"></a>Pattern.CANON_EQ</h3><p>此标志启用规范等效。如果指定，当且仅当它们的完整规范分解匹配时，才会认为两个字符匹配。</p>
+<p>考虑重音字符é。它的复合Unicode代码是u00E9。但是，Unicode还为其组件字符<code>e</code>(u0065)和急性重音u0301分别设置了一个代码点。在这种情况下，复合字符u00E9与两个字符序列u0065 u0301无法区分。在<a href="http://tool.chinaz.com/tools/unicode.aspx" target="_blank" rel="noopener">http://tool.chinaz.com/tools/unicode.aspx</a> 输入Unicode: <code>\u00E9</code>和<code>\u0065\u0301</code>转化后是同一个字符</p>
+<p>默认情况下，匹配不会将规范等效考虑在内</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithoutCanonEq_whenMatchFailsOnEquivalentUnicode_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\u00E9&quot;, &quot;\u0065\u0301&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0); // 注意这里是assertFalse</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是如果我们添加标志，那么测试将通过:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithCanonEq_whenMatchesOnEquivalentUnicode_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;\u00E9&quot;, &quot;\u0065\u0301&quot;, Pattern.CANON_EQ);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Pattern-CASE-INSENSITIVE"><a href="#Pattern-CASE-INSENSITIVE" class="headerlink" title="Pattern.CASE_INSENSITIVE"></a>Pattern.CASE_INSENSITIVE</h3><p>该标志无论大小写都能够进行匹配。默认情况下，匹配将案例考虑在内：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithDefaultMatcher_whenMatchFailsOnDifferentCases_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;dog&quot;, &quot;This is a Dog&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此，使用此标志，我们可以更改默认行为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithCaseInsensitiveMatcher_whenMatchesOnDifferentCases_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;dog&quot;, &quot;This is a Dog&quot;, Pattern.CASE_INSENSITIVE);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还可以使用等效的嵌入式标志表达式来实现相同的结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithEmbeddedCaseInsensitiveMatcher_whenMatchesOnDifferentCases_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;(?i)dog&quot;, &quot;This is a Dog&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="Pattern-COMMENTS"><a href="#Pattern-COMMENTS" class="headerlink" title="Pattern.COMMENTS"></a>Pattern.COMMENTS</h3><p>TJava API允许在正则表达式中使用＃包含注释。这有助于记录复杂的正则表达式，这对于另一个程序员来说可能并不是很明显。 comments标志使匹配器忽略正则表达式中的任何空格或注释，只考虑模式。在默认匹配模式下，以下测试将失败： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithComments_whenMatchFailsWithoutFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;dog$  #check for word dog at end of text&quot;, &quot;This is a dog&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是因为匹配器将在输入文本中查找整个正则表达式，包括空格和＃字符。但是当我们使用该标志时，它将忽略额外的空格，并且以＃开头的每个文本将被视为每行忽略的注释：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithComments_whenMatchesWithFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;dog$  #check end of text&quot;,&quot;This is a dog&quot;, Pattern.COMMENTS);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还有一个替代的嵌入式标志表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithComments_whenMatchesWithEmbeddedFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;(?x)dog$  #check end of text&quot;, &quot;This is a dog&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Pattern-DOTALL"><a href="#Pattern-DOTALL" class="headerlink" title="Pattern.DOTALL"></a>Pattern.DOTALL</h3><p>默认情况下，当我们在regex中使用点“.”表达式时，我们匹配输入String中的每个字符，直到遇到新的行字符。 使用此标志，匹配也将包括行终止符。</p>
+<p>我们将通过以下示例更好地理解。这些例子会有所不同。由于我们对匹配的String断言感兴趣，因此我们将使用matcher的group方法返回上一个匹配项。 首先，我们将看到默认行为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithLineTerminator_whenMatchFails_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;(.*)&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(</span><br><span class="line">      &quot;this is a text&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">        + &quot; continued on another line&quot;);</span><br><span class="line">    matcher.find();</span><br><span class="line">  </span><br><span class="line">    assertEquals(&quot;this is a text&quot;, matcher.group(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，只有行终止符之前输入的第一部分匹配。 </p>
+<p>下面的示例处于dotall模式，包括行终止符的整个文本将匹配：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithLineTerminator_whenMatchesWithDotall_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;(.*)&quot;, Pattern.DOTALL);</span><br><span class="line">    Matcher matcher = pattern.matcher(</span><br><span class="line">      &quot;this is a text&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">        + &quot; continued on another line&quot;);</span><br><span class="line">    matcher.find();</span><br><span class="line">    assertEquals(</span><br><span class="line">      &quot;this is a text&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">        + &quot; continued on another line&quot;, matcher.group(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们还可以使用嵌入式标志表达式来启用dotall模式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegexWithLineTerminator_whenMatchesWithEmbeddedDotall_thenCorrect() &#123;</span><br><span class="line">     </span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;(?s)(.*)&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(</span><br><span class="line">      &quot;this is a text&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">        + &quot; continued on another line&quot;);</span><br><span class="line">    matcher.find();</span><br><span class="line">  </span><br><span class="line">    assertEquals(</span><br><span class="line">      &quot;this is a text&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">        + &quot; continued on another line&quot;, matcher.group(1));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Pattern-LITERAL"><a href="#Pattern-LITERAL" class="headerlink" title="Pattern.LITERAL"></a>Pattern.LITERAL</h3><p>在此模式下，matcher对任何元字符，转义字符或正则表达式语法没有特殊含义。如果没有此标志，匹配器将对任何输入字符串匹配以下正则表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegex_whenMatchFailsWithLiteralFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;(.*)&quot;, &quot;text&quot;, Pattern.LITERAL);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在，如果我们添加所需的字符串，测试将通过：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegex_whenMatchesWithLiteralFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(&quot;(.*)&quot;, &quot;text(.*)&quot;, Pattern.LITERAL);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没有用于启用文字解析的嵌入标志字符。</p>
+<h3 id="Pattern-MULTILINE"><a href="#Pattern-MULTILINE" class="headerlink" title="Pattern.MULTILINE"></a>Pattern.MULTILINE</h3><p>默认情况下，^和$ metacharacters分别在整个输入String的开头和结尾处匹配。匹配器忽略任何行终止符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegex_whenMatchFailsWithoutMultilineFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;dog$&quot;, &quot;This is a dog&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">      + &quot;this is a fox&quot;);</span><br><span class="line">  </span><br><span class="line">    assertFalse(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面匹配失败，因为匹配器在整个String的末尾搜索dog，但是狗出现在字符串第一行的末尾。 </p>
+<p>但是，使用该标志，相同的测试将通过，因为匹配器现在考虑了行终止符。所以String line就在行终止之前找到，因此成功：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegex_whenMatchesWithMultilineFlag_thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;dog$&quot;, &quot;This is a dog&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">      + &quot;this is a fox&quot;, Pattern.MULTILINE);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是嵌入式标志版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenRegex_whenMatchesWithEmbeddedMultilineFlag_</span><br><span class="line">  thenCorrect() &#123;</span><br><span class="line">    int matches = runTest(</span><br><span class="line">      &quot;(?m)dog$&quot;, &quot;This is a dog&quot; + System.getProperty(&quot;line.separator&quot;) </span><br><span class="line">      + &quot;this is a fox&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matches &gt; 0);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Matcher-Class-Methods"><a href="#Matcher-Class-Methods" class="headerlink" title="Matcher Class Methods"></a>Matcher Class Methods</h2><p>在本节中，我们将介绍Matcher类的一些有用方法。我们将根据功能对它们进行分组以便清晰。</p>
+<h3 id="Index-Methods"><a href="#Index-Methods" class="headerlink" title="Index Methods"></a>Index Methods</h3><p>索引方法提供有用的索引值，可以精确显示在输入String中找到匹配的位置。在下面的测试中，我们将在输入String中确认dog匹配的开始和结束索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void givenMatch_whenGetsIndices_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;dog&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(&quot;This dog is mine&quot;);</span><br><span class="line">    matcher.find();</span><br><span class="line">  </span><br><span class="line">    assertEquals(5, matcher.start());</span><br><span class="line">    assertEquals(8, matcher.end());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Methods-match-and-lookingAt"><a href="#Methods-match-and-lookingAt" class="headerlink" title="Methods match and lookingAt"></a>Methods match and lookingAt</h3><p>研究方法遍历输入String并返回一个布尔值，指示是否找到该模式。常用的是match和lookingAt方法。 matches和lookingAt方法都尝试将输入序列与模式匹配。不同之处在于，匹配需要匹配整个输入序列，而查找则不需要。</p>
+<p>Both methods start at the beginning of the input String :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void whenStudyMethodsWork_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;dog&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(&quot;dogs are friendly&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matcher.lookingAt());</span><br><span class="line">    assertFalse(matcher.matches());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>两种方法都从输入String的开头开始：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void whenMatchesStudyMethodWorks_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;dog&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(&quot;dog&quot;);</span><br><span class="line">  </span><br><span class="line">    assertTrue(matcher.matches());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Replacement-Methods"><a href="#Replacement-Methods" class="headerlink" title="Replacement Methods"></a>Replacement Methods</h3><p>替换方法对于替换输入字符串中的文本很有用。常见的是replaceFirst和replaceAll。 replaceFirst和replaceAll方法替换匹配给定正则表达式的文本。正如其名称所示，replaceFirst替换第一个匹配项，replaceAll替换所有匹配项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void whenReplaceFirstWorks_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;dog&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(</span><br><span class="line">      &quot;dogs are domestic animals, dogs are friendly&quot;);</span><br><span class="line">    String newStr = matcher.replaceFirst(&quot;cat&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(</span><br><span class="line">      &quot;cats are domestic animals, dogs are friendly&quot;, newStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>替换所有匹配项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void whenReplaceAllWorks_thenCorrect() &#123;</span><br><span class="line">    Pattern pattern = Pattern.compile(&quot;dog&quot;);</span><br><span class="line">    Matcher matcher = pattern.matcher(</span><br><span class="line">      &quot;dogs are domestic animals, dogs are friendly&quot;);</span><br><span class="line">    String newStr = matcher.replaceAll(&quot;cat&quot;);</span><br><span class="line">  </span><br><span class="line">    assertEquals(&quot;cats are domestic animals, cats are friendly&quot;, newStr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <section class="meta">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:19:37+08:00" content="2018-12-21">
+                <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
+                本文最后更新于：2018-12-21
+            </time>
+            
+        </section>
+
+        
+            <div class="prev-next">
+                
+                    <section class="prev">
+                        <span class="art-item-left">
+                            <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                            <h4>
+                                <a href="/Java-Technologies/java-utils/" rel="prev" title="Java 工具类收集">
+                                  
+                                      Java 工具类收集
+                                  
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+                
+                    <section class="next">
+                        <span class="art-item-right" aria-hidden="true">
+                            <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                            <h4>
+                                <a href="/Java-Technologies/java-regular-expression-example/" rel="prev" title="Java 正则表达式示例">
+                                    
+                                        Java 正则表达式示例
+                                    
+                                </a>
+                            </h4>
+                            
+                        </span>
+                    </section>
+                
+            </div>
+        
+
+    </section>
+
+</article>
+
+<br>
+
+<!-- 显示推荐文章和评论 -->
+
+    <article class="post white-box comments">
+        <section class="article typo">
+
+            
+                
+
+    <div class="recommended_posts">
+        <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
+        <ul>
+            
+                <li><a href="https://choelea.github.io/Java-Technologies/Java-UUID/">Java 短ID 随机字符串</a></li>
+            
+                <li><a href="https://choelea.github.io/Java-Technologies/java-utils/">Java 工具类收集</a></li>
+            
+                <li><a href="https://choelea.github.io/Java-Technologies/java-regular-expression-example/">Java 正则表达式示例</a></li>
+            
+                <li><a href="https://choelea.github.io/Java-Technologies/Java-Concurrency-2/">Java并发编程的艺术 -02 Java并发机制的底层实现原理</a></li>
+            
+        </ul>
+    </div>
+
+
+            
+
+            
+
+                
+
+                
+
+                
+                    
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;Valine评论</h4>
+                        <div class="subtitle">
+                          <h6><b>文明评论，请勿灌水。</b>为了便于区分和接收回复提醒，请您在留言时填写一下<b>昵称</b>和<b>邮箱</b>。
+                          不定期清理没有昵称和灌水的评论。</h6>
+                        <div>
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+                        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+                        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+                    
+                
+            
+
+        </div></div></section>
+    </article>
+
+
+<script>
+    window.subData = {
+        title: '关于Java 正则表达式的介绍',
+        tools: true
+    }
+</script>
+
+
+        </div>
+        <aside class='l_side'>
+            
+    
+        
+  <section class="m_widget author">
+    
+      <div class="header">
+        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+      </div>
+    
+    
+    
+      <div class="social-wrapper">
+        
+          
+            <a href="mailto:joe.lea@foxmail.com" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-envelope" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://github.com/choelea" class="social flat-box" target="_blank" rel="external"><i class="social fab fa-github" aria-hidden="true"></i></a>
+          
+        
+          
+            <a href="https://music.163.com/#/user/home?id=781987646" class="social flat-box" target="_blank" rel="external"><i class="social fas fa-music" aria-hidden="true"></i></a>
+          
+        
+      </div>
+    
+  </section>
+
+
+    
+    
+        
+  <section class="m_widget announcement">
+    <header class="header pure">
+        <div><i class="fas fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;公告</div>
+    </header>
+    <div class="content pure">
+      感谢留下评论和指出错误的朋友!
+    </div>
+  </section>
+
+
+    
+    
+        <section class="m_widget categories">
+    <header class="header pure">
+        <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;分类</div>
+    </header>
+    <div class="content pure">
+        
+    </div>
+</section>
+
+    
+    
+        
+
+    
+    
+        
+    <section class="m_widget toc-wrapper">
+        <header class="header pure">
+            <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;目录</div>
+            <div class="wrapper"><a class="s-toc rightBtn" title="固定到顶部" target="_blank" rel="external nofollow noopener noreferrer" href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+        </header>
+        <div class="content pure">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-正则表达式包"><span class="toc-text">Java 正则表达式包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单示例来理解如何应用"><span class="toc-text">简单示例来理解如何应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#元字符"><span class="toc-text">元字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符类"><span class="toc-text">字符类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OR类"><span class="toc-text">OR类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NOR-类"><span class="toc-text">NOR 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Range-类"><span class="toc-text">Range 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Union-类"><span class="toc-text">Union 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Intersection-类"><span class="toc-text">Intersection 类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subtraction-Class"><span class="toc-text">Subtraction Class</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预定义字符类"><span class="toc-text">预定义字符类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#量词"><span class="toc-text">量词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获组"><span class="toc-text">捕获组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#边界匹配"><span class="toc-text">边界匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pattern-Class-Methods"><span class="toc-text">Pattern Class Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-CANON-EQ"><span class="toc-text">Pattern.CANON_EQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-CASE-INSENSITIVE"><span class="toc-text">Pattern.CASE_INSENSITIVE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-COMMENTS"><span class="toc-text">Pattern.COMMENTS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-DOTALL"><span class="toc-text">Pattern.DOTALL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-LITERAL"><span class="toc-text">Pattern.LITERAL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pattern-MULTILINE"><span class="toc-text">Pattern.MULTILINE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Matcher-Class-Methods"><span class="toc-text">Matcher Class Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Index-Methods"><span class="toc-text">Index Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Methods-match-and-lookingAt"><span class="toc-text">Methods match and lookingAt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Replacement-Methods"><span class="toc-text">Replacement Methods</span></a></li></ol></li></ol>
+        </div>
+    </section>
+
+
+    
+    
+        <section class="m_widget music">
+    <header class="header pure">
+        <div><i class="fas fa-headphones-alt fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;音乐</div>
+        <a class="rightBtn" title="打开博主的网易云音乐主页" target="_blank" rel="external nofollow noopener noreferrer" href="https://music.163.com/#/playlist?id=781987646"><i class="fas fa-external-link-square-alt fa-fw"></i></a>
+    </header>
+    <div class="content pure">
+        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="100%" height="450" src="//music.163.com/outchain/player?type=0&id=781987646&auto=0&height=450"></iframe>
+    </div>
+</section>
+
+    
+    
+        <section class="m_widget links">
+    <header class="header pure">
+        <div><i class="fas fa-handshake fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;友链</div>
+        
+            <a class="rightBtn" title="联系博主添加友链" target="_blank" rel="external nofollow noopener noreferrer" href="mailto:joe.lea@foxmail.com?subject=交换友链&body=你好，我想和你交换友链，我已经将【逍客 - Stay Happy and Enjoy Life!】添加到我的博客的友链中。我的博客链接是："><i class="fas fa-plus fa-fw"></i></a>
+        
+    </header>
+    <div class="content pure">
+        <ul class="entry" id="links">
+            
+        </ul>
+    </div>
+</section>
+
+    
+
+
+        </aside>
+        <script>setLoadingBarProgress(60);</script>
+    </div>
+    </div>
+    <footer id="footer" class="clearfix">
+    
+        <div class="social-wrapper">
+          
+              
+                  <a href="mailto:joe.lea@foxmail.com" class="social fas fa-envelope flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://github.com/choelea" class="social fab fa-github flat-box" target="_blank" rel="external"></a>
+              
+          
+              
+                  <a href="https://music.163.com/#/user/home?id=781987646" class="social fas fa-music flat-box" target="_blank" rel="external"></a>
+              
+          
+        </div>
+    
+    <br>
+    <div>博客内容遵循 <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="licenses">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></div>
+    <div>本站使用 <a href="https://xaoxuu.com/wiki/material-x/" target="_blank" class="codename">Material X</a> 作为主题，
+		总访问量为 <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i></span> 次。
+    </div>
+</footer>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+    <script>setLoadingBarProgress(80);</script>
+    <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/node-waves/0.7.5/waves.min.js"></script>
+<script src="//cdn.bootcss.com/scrollReveal.js/3.3.2/scrollreveal.min.js"></script>
+<!-- 访问统计 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<script src="/js/jquery.fitvids.js"></script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hexo" || "hexo";
+        var ROOT = "/"||"/";
+        if(!ROOT.endsWith('/'))ROOT += '/';
+    </script>
+
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+    
+    
+    
+        
+            <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+                appId: "HnFN3camhSX52IMir3lqT3hM-gzGzoHsz",
+                appKey: "vJsgB1TGKlmniiQsWp51HJaJ",
+                placeholder: "快来评论吧~",
+                pageSize:'10',
+                avatar:'mp',
+                lang:'zh-cn',
+                highlight:''
+            })
+            </script>
+        
+    
+
+
+
+
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("", "");</script>
+  <script>
+  function showTime(Counter) {
+    var query = new AV.Query(Counter);
+    var entries = [];
+    var $visitors = $(".leancloud_visitors");
+
+    $visitors.each(function () {
+      entries.push( $(this).attr("id").trim() );
+    });
+
+    query.containedIn('url', entries);
+    query.find()
+      .done(function (results) {
+        var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+        if (results.length === 0) {
+          $visitors.find(COUNT_CONTAINER_REF).text(0);
+          return;
+        }
+
+        for (var i = 0; i < results.length; i++) {
+          var item = results[i];
+          var url = item.get('url');
+          var time = item.get('time');
+          var element = document.getElementById(url);
+
+          $(element).find(COUNT_CONTAINER_REF).text(time);
+        }
+        for(var i = 0; i < entries.length; i++) {
+          var url = entries[i];
+          var element = document.getElementById(url);
+          var countSpan = $(element).find(COUNT_CONTAINER_REF);
+          if( countSpan.text() == '') {
+            countSpan.text(0);
+          }
+        }
+      })
+      .fail(function (object, error) {
+        console.log("Error: " + error.code + " " + error.message);
+      });
+  }
+
+  function addCount(Counter) {
+    var $visitors = $(".leancloud_visitors");
+    var url = $visitors.attr('id').trim();
+    var title = $visitors.attr('data-flag-title').trim();
+    var query = new AV.Query(Counter);
+
+    query.equalTo("url", url);
+    query.find({
+      success: function(results) {
+        if (results.length > 0) {
+          var counter = results[0];
+          counter.fetchWhenSave(true);
+          counter.increment("time");
+          counter.save(null, {
+            success: function(counter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.get('time'));
+            },
+            error: function(counter, error) {
+              console.log('Failed to save Visitor num, with error message: ' + error.message);
+            }
+          });
+        } else {
+          var newcounter = new Counter();
+          /* Set ACL */
+          var acl = new AV.ACL();
+          acl.setPublicReadAccess(true);
+          acl.setPublicWriteAccess(true);
+          newcounter.setACL(acl);
+          /* End Set ACL */
+          newcounter.set("title", title);
+          newcounter.set("url", url);
+          newcounter.set("time", 1);
+          newcounter.save(null, {
+            success: function(newcounter) {
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+            },
+            error: function(newcounter, error) {
+              console.log('Failed to create');
+            }
+          });
+        }
+      },
+      error: function(error) {
+        console.log('Error:' + error.code + " " + error.message);
+      }
+    });
+  }
+
+  $(function() {
+    var Counter = AV.Object.extend("Counter");
+    if ($('.leancloud_visitors').length == 1) {
+      addCount(Counter);
+    } else if ($('.post-title-link').length > 1) {
+      showTime(Counter);
+    }
+  });
+</script>
+
+
+    <script>setLoadingBarProgress(100);</script>
+</body>
