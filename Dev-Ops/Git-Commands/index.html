@@ -10,12 +10,12 @@
   
   <meta name="HandheldFriendly" content="True">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico">
+  <link rel="shortcut icon" href="http://it.jiu-shu.com/assets/img/favicon.ico">
   <link rel="alternate" href="/atom.xml" title="逍客 - Stay Happy and Enjoy Life!">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <link rel="shortcut icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
-  <link rel="icon" href="https://choelea.github.io/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="http://it.jiu-shu.com/assets/img/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="http://it.jiu-shu.com/assets/img/favicon.ico" type="image/x-icon">
   
   <link href="https://fonts.googleapis.com/css?family=Ubuntu|Ubuntu+Mono" rel="stylesheet">
   
@@ -56,7 +56,7 @@
             
     					
     						<li>
-    							<a class="nav flat-box" href="https://choelea.github.io/">
+    							<a class="nav flat-box" href="http://it.jiu-shu.com/">
     								<i class="fas fa-home fa-fw"></i>&nbsp;主页
   								</a>
   							</li>
@@ -104,7 +104,7 @@
           
               
                   <li>
-										<a class="nav  flat-box" href="https://choelea.github.io/">
+										<a class="nav  flat-box" href="http://it.jiu-shu.com/">
 											<i class="fas fa-home fa-fw"></i>&nbsp;主页
 										</a>
                   </li>
@@ -169,7 +169,8 @@
 <p>git checkout <file> // 重新checkout文件file，相当于丢掉了本地的修改<br>git checkout src/<em> // 使用通配符来checkout src文件夹下面所有的修改<br>git reset –hard // 丢掉所有的修改modified 文件<br>git clean -fd    // 移除所有untrack的文件和文件夹<br>git clean -fd src/</em> // 移除src目录下面所有的新增的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git clean -fd 中 -f means force, -d means &apos;remove directories&apos;</span><br><span class="line">### 切换分支</span><br><span class="line">&gt; 切换分支前必须保证工作空间是干净的。（没有未提交的修改和新增）</span><br></pre></td></tr></table></figure></file></p>
 <p>git checkout branchename // 切换到branchname分支<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 提交历史 log日志</span><br></pre></td></tr></table></figure></p>
 <p>git log  // 默认不用任何参数的话，git log 会按提交时间列出所有的更新，最近的更新排在最上面。<br>git log –oneline –graph –decorate –color<br>git log – <filepath>  // 查看某个文件的日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#### 查看历史提交的内容差异</span><br></pre></td></tr></table></figure></filepath></p>
-<p>git log -p -2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> 我们常用 -p 选项展开显示每次提交的内容差异，用 -2 则仅显示最近的两次更新：</span><br><span class="line"></span><br><span class="line">### 移除文件</span><br><span class="line">方式一：完全通过git命令</span><br></pre></td></tr></table></figure></p>
+<p>git log -p -2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 我们常用 -p 选项展开显示每次提交的内容差异，用 -2 则仅显示最近的两次更新：</span><br><span class="line">#### 可视化查看某个文件的提交历史</span><br></pre></td></tr></table></figure></p>
+<p>gitk [filename] // 启用可视化的方式查看提交历史<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">### 移除文件</span><br><span class="line">方式一：完全通过git命令</span><br></pre></td></tr></table></figure></p>
 <p>git rm debug.log  // remove and stage the change<br>git commit -m ‘remove file debug.log’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">方式二：</span><br><span class="line">非git 命令删除文件后，运行下面的命令</span><br></pre></td></tr></table></figure></p>
 <p>git add -u // git 2.0 以前的版本  stage删除的change<br>git add file-name // git 2.0 后也可以通过这个命令达到上面的命令的效果<br>git commit -m ‘commit message’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 移动文件</span><br></pre></td></tr></table></figure></p>
 <p>git mv index.html web/  // 移动index.html 到web文件夹内。 命令完成后直接进入staging 状态<br>git commit -m ‘move index.html into web folder’<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">### ignore 文件</span><br><span class="line">编辑 .gitignore 文件</span><br><span class="line"></span><br><span class="line">## SSH 命令</span><br><span class="line">windows cmd并没有自带ssh命令，我们可以通过git bash命令窗来运行这些命令。</span><br><span class="line">假定在当前用户的目录下：</span><br></pre></td></tr></table></figure></p>
@@ -186,9 +187,9 @@
         </div>
 
         <section class="meta">
-            <time class="time" itemprop="dateUpdated" datetime="2018-12-21T10:47:14+08:00" content="2018-12-21">
+            <time class="time" itemprop="dateUpdated" datetime="2018-12-24T10:51:14+08:00" content="2018-12-24">
                 <i class="fas fa-pen fa-fw" aria-hidden="true"></i>
-                本文最后更新于：2018-12-21
+                本文最后更新于：2018-12-24
             </time>
             
         </section>
@@ -246,13 +247,13 @@
         <h4><i class="fas fa-bookmark fa-fw" aria-hidden="true"></i>&nbsp;你可能感兴趣的文章</h4>
         <ul>
             
-                <li><a href="https://choelea.github.io/Dev-Ops/Maven-Private-Repository-Server/">利用Nexus搭建Maven私服</a></li>
+                <li><a href="http://it.jiu-shu.com/Dev-Ops/Maven-Private-Repository-Server/">利用Nexus搭建Maven私服</a></li>
             
-                <li><a href="https://choelea.github.io/Dev-Ops/Java-IDE-Useful-Skills/">Java 开发工具使用技巧收集</a></li>
+                <li><a href="http://it.jiu-shu.com/Dev-Ops/Java-IDE-Useful-Skills/">Java 开发工具使用技巧收集</a></li>
             
-                <li><a href="https://choelea.github.io/Dev-Ops/Centos-Common-Commands/">Centos 常用命令</a></li>
+                <li><a href="http://it.jiu-shu.com/Dev-Ops/Centos-Common-Commands/">Centos 常用命令</a></li>
             
-                <li><a href="https://choelea.github.io/Database-Technologies/Mysql-Administration/">Mysql 运维相关脚本收集</a></li>
+                <li><a href="http://it.jiu-shu.com/Database-Technologies/Mysql-Administration/">Mysql 运维相关脚本收集</a></li>
             
         </ul>
     </div>
@@ -304,7 +305,7 @@
   <section class="m_widget author">
     
       <div class="header">
-        <img class="avatar" src="https://choelea.github.io/assets/img/avatar.jpg">
+        <img class="avatar" src="http://it.jiu-shu.com/assets/img/avatar.jpg">
       </div>
     
     
